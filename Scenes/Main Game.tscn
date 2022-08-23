@@ -95,3 +95,4 @@ transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -
 
 [node name="RidgedBody" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -105.495, 2.46263, -38.3714 )
+collision_layer = 1048575
