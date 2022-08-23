@@ -7,26 +7,24 @@
 [node name="Node2D" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1024.0
-margin_bottom = -600.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1021.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0.0941176, 0.576471, 0.654902, 0.34902 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = 361.0
-margin_top = 89.0
-margin_right = 702.0
-margin_bottom = 192.0
+margin_left = 760.52
+margin_top = 270.861
+margin_right = 1101.52
+margin_bottom = 373.861
 text = "Time Wars"
 align = 1
 valign = 1
@@ -35,10 +33,10 @@ __meta__ = {
 }
 
 [node name="Play_Button" type="Button" parent="Label"]
-margin_left = -30.0
-margin_top = 156.0
-margin_right = 383.0
-margin_bottom = 281.0
+margin_left = 223.459
+margin_top = 204.687
+margin_right = 636.459
+margin_bottom = 329.687
 text = "Play"
 script = ExtResource( 1 )
 __meta__ = {
@@ -47,10 +45,10 @@ __meta__ = {
 scene_to_load = "res://Scenes/Main Game.tscn"
 
 [node name="Show_FPS" type="Button" parent="Label"]
-margin_left = -322.105
-margin_top = 177.895
-margin_right = -67.1053
-margin_bottom = 265.895
+margin_left = -111.605
+margin_top = 225.15
+margin_right = 143.395
+margin_bottom = 313.15
 text = "Show FPS:OFF"
 script = ExtResource( 3 )
 __meta__ = {
