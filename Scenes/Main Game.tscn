@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/LandScape.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/3D Model Tree.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Pt2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Wrecked_House_Whole.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Rock_(1)_Smoothed.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=1]
@@ -72,22 +73,25 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -130.152, 3.58566, -45.386 )
 transform = Transform( 1, 0, 0, 0, 0.335139, -0.942169, 0, 0.942169, 0.335139, -56.7534, 1.26963, -77.9075 )
 
 [node name="Rock_(1)_Smoothed2" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -81.1673, 1.67047, 14.0216 )
+transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -81.1673, 3.83784, -156.008 )
 
 [node name="Rock_(1)_Smoothed3" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -74.158, 1.67047, 14.0216 )
+transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -74.158, 3.83784, -156.008 )
 
 [node name="Rock_(1)_Smoothed4" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -74.158, 1.67047, 21.9805 )
+transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -74.158, 9.0026, -149.953 )
 
 [node name="Rock_(1)_Smoothed5" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -69.8921, 1.67047, 21.9805 )
+transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -69.8921, 9.0026, -149.953 )
 
 [node name="Rock_(1)_Smoothed6" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -69.8921, 1.67047, 28.9266 )
+transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -69.8921, 13.5101, -144.668 )
 
 [node name="Rock_(1)_Smoothed7" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -65.054, 1.67047, 31.838 )
+transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -65.054, 15.3994, -142.453 )
 
 [node name="Rock_(1)_Smoothed8" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -58.877, 1.67047, 31.838 )
+transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -58.877, 15.3994, -142.453 )
+
+[node name="RidgedBody" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -105.495, 2.46263, -38.3714 )
