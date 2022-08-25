@@ -1,6 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
 [sub_resource type="SphereMesh" id=1]
+radial_segments = 128
+rings = 64
 
 [sub_resource type="SphereShape" id=2]
 

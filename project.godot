@@ -23,6 +23,10 @@ config/icon="res://Images/Tree.png"
 
 Global="*res://Scripts/Global.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/width=1920
@@ -70,12 +74,16 @@ file_logging/max_log_files=100
 
 threads/thread_model=2
 quality/filters/anisotropic_filter_level=16
-quality/directional_shadow/size=8096
-quality/shadow_atlas/size=8096
-quality/shadow_atlas/quadrant_0_subdiv=3
-quality/shadow_atlas/quadrant_1_subdiv=4
-quality/shadow_atlas/quadrant_2_subdiv=5
+quality/directional_shadow/size=16096
+quality/shadow_atlas/size=16096
+quality/shadow_atlas/quadrant_0_subdiv=6
+quality/shadow_atlas/quadrant_1_subdiv=6
+quality/shadow_atlas/quadrant_2_subdiv=6
 quality/shadow_atlas/quadrant_3_subdiv=6
+quality/shading/force_vertex_shading=true
+quality/shading/force_lambert_over_burley=true
+quality/shading/force_blinn_over_ggx=true
 quality/subsurface_scattering/quality=2
+quality/subsurface_scattering/scale=8
 quality/voxel_cone_tracing/high_quality=true
 environment/default_environment="res://default_env.tres"

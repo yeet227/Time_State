@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Pole.obj-92625428be86b16999762aad78ab8cbf.mesh"
+
+[deps]
+
+files=[ "res://.import/Pole.obj-92625428be86b16999762aad78ab8cbf.mesh" ]
+
+source_file="res://Assets/Blender Assets/Poles_Various/Pole.obj"
+dest_files=[ "res://.import/Pole.obj-92625428be86b16999762aad78ab8cbf.mesh", "res://.import/Pole.obj-92625428be86b16999762aad78ab8cbf.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
