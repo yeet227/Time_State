@@ -1,1 +1,10 @@
-# 3Dv2-Godot-3.2
+# Time-State_3D
+
+Planned Features:
+Stamina bar
+Enemies
+Weapons
+Big Map
+Low Polygon Details
+
+Possible Features:
