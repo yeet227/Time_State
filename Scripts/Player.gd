@@ -1,8 +1,10 @@
 extends KinematicBody
 
-export var jump_strength = 30.0
-export var gravity = 82.0
-export var speed = 35.0
+export var jump_strength = 30.0 #Character force of jump
+export var gravity = 82.0 #Character Gravity
+export var speed = 35.0 #Character Speed
+export var Stamina_Delay : float = 3.0 #How many Seconds between stamina use
+export var Stamina_Length : float = 13.0 #Length of time for the use of stamina to be in effect
 
 var _velocity := Vector3.ZERO
 var _snap_vector := Vector3.DOWN
