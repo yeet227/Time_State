@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/LandScape.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Scenes/Wrecked_House_Whole.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Rock_(1)_Smoothed.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Chest.obj" type="ArrayMesh" id=8]
+[ext_resource path="res://Assets/Blender Assets/Poles_Various/Pole.obj" type="ArrayMesh" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "SunRotate"
@@ -50,8 +52,6 @@ data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1
 
 [sub_resource type="ConcavePolygonShape" id=11]
 data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
-
-[sub_resource type="CubeMesh" id=12]
 
 [node name="World" type="Spatial"]
 
@@ -167,7 +167,7 @@ lifetime = 7.0
 speed_scale = 0.25
 fract_delta = false
 draw_order = 1
-mesh = SubResource( 12 )
+mesh = ExtResource( 9 )
 emission_shape = 1
 emission_sphere_radius = 1.0
 spread = 125.0
@@ -175,3 +175,8 @@ gravity = Vector3( 10, 0, 0 )
 scale_amount = 0.25
 color = Color( 0.917647, 0.0745098, 0.0745098, 1 )
 anim_speed = 10.0
+
+[node name="Chest" type="MeshInstance" parent="."]
+transform = Transform( 8, 0, 0, 0, 3, 0, 0, 0, 8, -70.6196, 80.1377, 99.1709 )
+mesh = ExtResource( 8 )
+material/0 = null
