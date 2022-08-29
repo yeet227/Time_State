@@ -176,6 +176,57 @@ scale_amount = 0.25
 color = Color( 0.917647, 0.0745098, 0.0745098, 1 )
 anim_speed = 10.0
 
+[node name="CPUParticles2" type="CPUParticles" parent="."]
+transform = Transform( 8, 0, 0, 0, 3, 0, 0, 0, 8, -267.51, 74.2315, -52.5703 )
+cast_shadow = 2
+amount = 100
+lifetime = 7.0
+speed_scale = 0.25
+fract_delta = false
+draw_order = 1
+mesh = ExtResource( 9 )
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 125.0
+gravity = Vector3( 10, 0, 0 )
+scale_amount = 0.25
+color = Color( 0.917647, 0.0745098, 0.0745098, 1 )
+anim_speed = 10.0
+
+[node name="CPUParticles3" type="CPUParticles" parent="."]
+transform = Transform( 8, 0, 0, 0, 3, 0, 0, 0, 8, -267.51, 74.2315, -78.6741 )
+cast_shadow = 2
+amount = 100
+lifetime = 7.0
+speed_scale = 0.25
+fract_delta = false
+draw_order = 1
+mesh = ExtResource( 9 )
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 125.0
+gravity = Vector3( 10, 0, 0 )
+scale_amount = 0.25
+color = Color( 0.917647, 0.0745098, 0.0745098, 1 )
+anim_speed = 10.0
+
+[node name="CPUParticles4" type="CPUParticles" parent="."]
+transform = Transform( 8, 0, 0, 0, 3, 0, 0, 0, 8, -267.51, 74.2315, -22.7074 )
+cast_shadow = 2
+amount = 100
+lifetime = 7.0
+speed_scale = 0.25
+fract_delta = false
+draw_order = 1
+mesh = ExtResource( 9 )
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 125.0
+gravity = Vector3( 10, 0, 0 )
+scale_amount = 0.25
+color = Color( 0.917647, 0.0745098, 0.0745098, 1 )
+anim_speed = 10.0
+
 [node name="Chest" type="MeshInstance" parent="."]
 transform = Transform( 8, 0, 0, 0, 3, 0, 0, 0, 8, -70.6196, 80.1377, 99.1709 )
 mesh = ExtResource( 8 )
