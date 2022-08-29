@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/LandScape.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scenes/Rock_(1)_Smoothed.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Chest.obj" type="ArrayMesh" id=8]
 [ext_resource path="res://Assets/Blender Assets/Poles_Various/Pole.obj" type="ArrayMesh" id=9]
+[ext_resource path="res://Assets/City_Biome_Floor.material" type="Material" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "SunRotate"
@@ -70,9 +71,9 @@ anims/SunRotate = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4823, 8.89061, 51.5203 )
 
 [node name="Start_City_Biome" type="MeshInstance" parent="."]
-transform = Transform( 40, 0, 0, 0, 7, 0, 0, 0, 70, -107.003, -6.41253, 0.189 )
+transform = Transform( 80, 0, 0, 0, 7, 0, 0, 0, 70, -147.51, -6.41253, 0.189 )
 mesh = SubResource( 2 )
-material/0 = null
+material/0 = ExtResource( 10 )
 
 [node name="StaticBody" type="StaticBody" parent="Start_City_Biome"]
 
@@ -80,7 +81,7 @@ material/0 = null
 shape = SubResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.2363, 11.5021, 42.5856 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -97.4961, 6.29015, 0.783693 )
 
 [node name="Pt2" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 221.415, -4.00054, -79.749 )
@@ -95,13 +96,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -130.152, 3.58566, -45.386 )
 transform = Transform( 1, 0, 0, 0, 0.335139, -0.942169, 0, 0.942169, 0.335139, -56.7534, 1.26963, -77.9075 )
 
 [node name="Rock_(1)_Smoothed2" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -81.1673, 3.83784, -156.008 )
+transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -40.8975, 1.43944, -21.7405 )
 
 [node name="Rock_(1)_Smoothed3" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -74.158, 3.83784, -156.008 )
+transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -98.9484, -2.90323, -156.008 )
 
 [node name="Rock_(1)_Smoothed4" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -74.158, 9.0026, -149.953 )
+transform = Transform( -6.51683e-07, -2.5, 0, 4, -4.07302e-07, 0, 0, 0, 2.5, -74.158, -9.43131, -204.001 )
 
 [node name="Rock_(1)_Smoothed5" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 0.939334, 0.343004, 0, -0.343004, 0.939334, -69.8921, 9.0026, -149.953 )

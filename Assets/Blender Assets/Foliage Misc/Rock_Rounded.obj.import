@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Rock_Rounded.obj-c4c7296b12340fa836a5d7de9af55bb6.mesh"
+
+[deps]
+
+files=[ "res://.import/Rock_Rounded.obj-c4c7296b12340fa836a5d7de9af55bb6.mesh" ]
+
+source_file="res://Assets/Blender Assets/Foliage Misc/Rock_Rounded.obj"
+dest_files=[ "res://.import/Rock_Rounded.obj-c4c7296b12340fa836a5d7de9af55bb6.mesh", "res://.import/Rock_Rounded.obj-c4c7296b12340fa836a5d7de9af55bb6.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
