@@ -15,7 +15,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.0941176, 0.576471, 0.654902, 0.34902 )
+color = Color( 0.156863, 0.694118, 0.780392, 0.34902 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -33,10 +33,10 @@ __meta__ = {
 }
 
 [node name="Play_Button" type="Button" parent="Label"]
-margin_left = 223.459
-margin_top = 204.687
-margin_right = 636.459
-margin_bottom = 329.687
+margin_left = 214.483
+margin_top = 202.443
+margin_right = 627.483
+margin_bottom = 327.443
 text = "Play"
 script = ExtResource( 1 )
 __meta__ = {
