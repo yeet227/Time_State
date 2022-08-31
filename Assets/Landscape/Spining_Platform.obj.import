@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Spining_Platform.obj-557255873c3b52af21a4c7e5b92c3640.mesh"
+
+[deps]
+
+files=[ "res://.import/Spining_Platform.obj-557255873c3b52af21a4c7e5b92c3640.mesh" ]
+
+source_file="res://Assets/Landscape/Spining_Platform.obj"
+dest_files=[ "res://.import/Spining_Platform.obj-557255873c3b52af21a4c7e5b92c3640.mesh", "res://.import/Spining_Platform.obj-557255873c3b52af21a4c7e5b92c3640.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
