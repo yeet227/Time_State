@@ -109,7 +109,6 @@ shape = SubResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -97.4961, 6.29015, 0.783693 )
-scene_to_load = "res://Scenes/Chest.tscn"
 
 [node name="Pt2" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 221.415, -4.00054, -79.749 )
