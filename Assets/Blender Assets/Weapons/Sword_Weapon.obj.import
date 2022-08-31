@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Sword_Weapon.obj-87cba153ba72de5261d2b8e5399a0991.mesh"
+
+[deps]
+
+files=[ "res://.import/Sword_Weapon.obj-87cba153ba72de5261d2b8e5399a0991.mesh" ]
+
+source_file="res://Assets/Blender Assets/Weapons/Sword_Weapon.obj"
+dest_files=[ "res://.import/Sword_Weapon.obj-87cba153ba72de5261d2b8e5399a0991.mesh", "res://.import/Sword_Weapon.obj-87cba153ba72de5261d2b8e5399a0991.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
