@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Lamp_Post.obj-b7711a2b52db3cc32ee79039061e8173.mesh"
+
+[deps]
+
+files=[ "res://.import/Lamp_Post.obj-b7711a2b52db3cc32ee79039061e8173.mesh" ]
+
+source_file="res://Assets/Landscape/Lamp_Post.obj"
+dest_files=[ "res://.import/Lamp_Post.obj-b7711a2b52db3cc32ee79039061e8173.mesh", "res://.import/Lamp_Post.obj-b7711a2b52db3cc32ee79039061e8173.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
