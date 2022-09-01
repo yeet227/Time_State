@@ -1,4 +1,4 @@
-# Time-State_3D
+# Time-State 3D
 
 Planned Features:
 Stamina bar
