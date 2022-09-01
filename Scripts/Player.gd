@@ -3,8 +3,9 @@ extends KinematicBody
 export var jump_strength = 30.0 #Character force of jump
 export var gravity = 82.0 #Character Gravity
 export var speed = 35.0 #Character Speed
-export var Stamina_Delay : float = 3.0 #How many Seconds between stamina use
-export var Stamina_Length : float = 13.0 #Length of time for the use of stamina to be in effect
+export var Stamina_Delay : float = 10.0 #How many Seconds between stamina use
+export var Stamina_Length : float = 25.0 #Length of time for the use of stamina to be in effect
+var Stamina = false
 
 var _velocity := Vector3.ZERO
 var _snap_vector := Vector3.DOWN
@@ -32,5 +33,14 @@ func _physics_process(delta):
 	if _velocity.length() > 0.2:
 		var look_direction = Vector2(_velocity.z, _velocity.x)
 	
-func _process(_delta: float) -> void:
-		_spring_arm.translation = translation
+
+func _process(delta):
+	_spring_arm.translation = translation
+	if Input.is_action_pressed("Stamina"):
+		Stamina = true
+		speed = 100
+		print("stamina on")
+		yield(get_tree().create_timer(Stamina_Length),"timeout")
+		Stamina = false
+		speed = 35
+		print("stamina off")
