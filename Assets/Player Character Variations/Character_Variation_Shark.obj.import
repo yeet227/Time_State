@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Character_Variation_Shark.obj-3e4e3d575ed084c62951e2ea40f21514.mesh"
+
+[deps]
+
+files=[ "res://.import/Character_Variation_Shark.obj-3e4e3d575ed084c62951e2ea40f21514.mesh" ]
+
+source_file="res://Assets/Player Character Variations/Character_Variation_Shark.obj"
+dest_files=[ "res://.import/Character_Variation_Shark.obj-3e4e3d575ed084c62951e2ea40f21514.mesh", "res://.import/Character_Variation_Shark.obj-3e4e3d575ed084c62951e2ea40f21514.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
