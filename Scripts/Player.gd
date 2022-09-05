@@ -38,9 +38,11 @@ func _process(delta):
 	_spring_arm.translation = translation
 	if Input.is_action_pressed("Stamina"):
 		Stamina = true
-		speed = 100
+		speed = 120
+		print(speed)
 		print("Stamina On")
 		yield(get_tree().create_timer(Stamina_Length),"timeout")
 		Stamina = false
 		speed = 35
+		print(speed)
 		print("Stamina Off")
