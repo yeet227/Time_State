@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Turret_Variation.obj-20bed3df56cb79232bf195f188647aa4.mesh"
+
+[deps]
+
+files=[ "res://.import/Turret_Variation.obj-20bed3df56cb79232bf195f188647aa4.mesh" ]
+
+source_file="res://Assets/Landscape/Turret_Variation.obj"
+dest_files=[ "res://.import/Turret_Variation.obj-20bed3df56cb79232bf195f188647aa4.mesh", "res://.import/Turret_Variation.obj-20bed3df56cb79232bf195f188647aa4.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

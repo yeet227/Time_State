@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Wall(2)_var.obj-b233c5a23b3b4a11229ad3f080e9deaa.mesh"
+
+[deps]
+
+files=[ "res://.import/Wall(2)_var.obj-b233c5a23b3b4a11229ad3f080e9deaa.mesh" ]
+
+source_file="res://Assets/Blender Assets/House(1)_Assets/Wall(2)_var.obj"
+dest_files=[ "res://.import/Wall(2)_var.obj-b233c5a23b3b4a11229ad3f080e9deaa.mesh", "res://.import/Wall(2)_var.obj-b233c5a23b3b4a11229ad3f080e9deaa.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
