@@ -42,6 +42,7 @@ func _process(delta):
 		print(speed)
 		print("Stamina On")
 		yield(get_tree().create_timer(Stamina_Length),"timeout")
+		Input.is_action_just_released("Stamina")
 		Stamina = false
 		speed = 35
 		print(speed)
