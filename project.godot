@@ -17,7 +17,8 @@ _global_script_class_icons={
 
 config/name="Time State 3D"
 run/main_scene="res://Scenes/Main Menu.tscn"
-config/icon="res://Images/Tree.png"
+config/icon="res://Textures/Icon_2.png"
+config/windows_native_icon="res://Textures/New Project.ico"
 
 [autoload]
 
