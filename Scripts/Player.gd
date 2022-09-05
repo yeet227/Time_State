@@ -39,8 +39,8 @@ func _process(delta):
 	if Input.is_action_pressed("Stamina"):
 		Stamina = true
 		speed = 100
-		print("stamina on")
+		print("Stamina On")
 		yield(get_tree().create_timer(Stamina_Length),"timeout")
 		Stamina = false
 		speed = 35
-		print("stamina off")
+		print("Stamina Off")
