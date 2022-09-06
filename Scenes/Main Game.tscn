@@ -87,10 +87,12 @@ data = PoolVector3Array( -58, 11.2, -58, -59, 11.2, -59, -58, 11.2, -59, -59, 11
 transform = Transform( 40, 0, 0, 0, 15, 0, 0, 0, 40, 2.677, -5.66484, -2.677 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.816044, 0.577989, 0, -0.577989, 0.816044, 0, 52.53, 0 )
+transform = Transform( 1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, -71.8583, 153.242, -128.842 )
+light_energy = 5.0
 shadow_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DirectionalLight"]
+process_priority = 1
 playback_process_mode = 0
 anims/SunRotate = SubResource( 1 )
 
