@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Decorative_Face.obj-4fbe0056a58681c76a6d61a0cd964e37.mesh"
+
+[deps]
+
+files=[ "res://.import/Decorative_Face.obj-4fbe0056a58681c76a6d61a0cd964e37.mesh" ]
+
+source_file="res://Assets/Obj_files/Decorative_Face.obj"
+dest_files=[ "res://.import/Decorative_Face.obj-4fbe0056a58681c76a6d61a0cd964e37.mesh", "res://.import/Decorative_Face.obj-4fbe0056a58681c76a6d61a0cd964e37.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
