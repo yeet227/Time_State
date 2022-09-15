@@ -39,11 +39,11 @@ func _process(delta):
 	if Input.is_action_pressed("Stamina"):
 		Stamina = true
 		speed = 120
-		print(speed)
+		print(speed) # Speedometer for Output Logging Purposes
 		print("Stamina On")
 		yield(get_tree().create_timer(Stamina_Length),"timeout")
 		Input.is_action_just_released("Stamina")
 		Stamina = false
 		speed = 35
-		print(speed)
+		print(speed) #Speedometer for Logging Purposes
 		print("Stamina Off")
