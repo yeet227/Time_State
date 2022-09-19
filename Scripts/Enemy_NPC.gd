@@ -1,9 +1,17 @@
 extends KinematicBody
 
 var Speed = 15.0
+var point = Vector3(10, 10, 0)
+var Second_point = Vector3(52, 30, 0)
 
-func _ready():
+func _process(delta):
+	var direction
 	
-
-func _on_Area_body_entered(body):
-	pass # Replace with function body.
+	if point.distance_to(transform.origin) > 0.05:
+		direction = point - transform.origin
+		direction = direction.normalized() * Speed
+	else:
+		direction = point - transform.origin
+	move_and_slide(direction)
+		
+		
