@@ -3,7 +3,8 @@
 Planned Features:
 Stamina
 Stamina bar
-Basic Enemy
+Health/Health Bar
+Basic Enemy Chase
 Big Map
 Low Polygon Graphics
 
