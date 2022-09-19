@@ -1,12 +1,18 @@
 # Time-State 3D
 
 Planned Features:
+Stamina
 Stamina bar
-Enemies
-Weapons
+Basic Enemy
 Big Map
-Low Polygon Details
+Low Polygon Graphics
 
-Possible Features:
 
-Disclaimer: All Assets are made by Me no outsourceing was done in the making of this project
+Implemented Features:
+Stamina
+Low Polygon Graphics
+Big Map
+
+More To be Added Soon!
+
+Disclaimer: All Assets are made by Me no outsourceing was done in the making of this project.
