@@ -1,4 +1,4 @@
-# Time-State 3D
+# Time-State 3D Development Log
 
 Planned Features:
 Stamina
