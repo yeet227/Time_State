@@ -30,7 +30,7 @@ script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="SpringArm"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30422, 3.71306 )
-far = 80.0
+fov = 85.0
 
 [node name="Movable_object_Anim" parent="." instance=ExtResource( 4 )]
 transform = Transform( -8.14603e-09, 0.00868241, 0.0492404, 0, 0.0492404, -0.00868241, -0.05, -1.41454e-09, -8.02228e-09, 0, 0.820878, -0.773672 )

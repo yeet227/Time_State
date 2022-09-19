@@ -5,3 +5,14 @@
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
+fog_enabled = true
+fog_depth_begin = 0.8
+fog_depth_end = 800.0
+fog_depth_curve = 2.82843
+fog_transmit_enabled = true
+fog_height_enabled = true
+fog_height_min = 150.0
+fog_height_max = 150.0
+fog_height_curve = 27.8576
+auto_exposure_enabled = true
+glow_enabled = true
