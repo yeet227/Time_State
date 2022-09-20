@@ -123,7 +123,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -112.696, 5.19536, -20.6825 )
 collision_layer = 1048575
 
 [node name="Chest" type="MeshInstance" parent="."]
-transform = Transform( 8, 0, 0, 0, 3, 0, 0, 0, 8, -70.6196, 80.1377, 99.1709 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -70.6196, 1.58747, 37.5046 )
 mesh = ExtResource( 8 )
 material/0 = null
 
