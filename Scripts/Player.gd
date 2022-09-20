@@ -1,8 +1,8 @@
 extends KinematicBody
 
 export var jump_strength = 30.0 #Character force of jump
-export var gravity = 82.0 #Character Gravity
-export var speed = 35.0 #Character Speed
+export var gravity = 8.9 #Character Gravity
+export var speed = 16.0 #Character Speed
 export var Stamina_Delay : float = 10.0 #How many Seconds between stamina use
 export var Stamina_Length : float = 25.0 #Length of time for the use of stamina to be in effect
 var Stamina = false
@@ -38,12 +38,12 @@ func _process(delta):
 	_spring_arm.translation = translation
 	if Input.is_action_pressed("Stamina"):
 		Stamina = true
-		speed = 120
+		speed = 30.0
 		print(speed) # Speedometer for Output Logging Purposes
 		print("Stamina On")
 		yield(get_tree().create_timer(Stamina_Length),"timeout")
 		Input.is_action_just_released("Stamina")
 		Stamina = false
-		speed = 35
+		speed = 16.0
 		print(speed) #Speedometer for Logging Purposes
 		print("Stamina Off")

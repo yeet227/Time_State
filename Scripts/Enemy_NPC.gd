@@ -13,9 +13,12 @@ func _process(delta):
 	else:
 		direction = point - transform.origin
 	move_and_slide(direction)
-	print(transform)
+	#print(transform)
 		
 
 
 func _on_Area_body_entered(KinematicBody):
-	print(transform)
+	print("Hi!")
+	
+func _on_Area_body_exited(KinematicBody):
+	print("Good Bye!")

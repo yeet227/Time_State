@@ -41,3 +41,4 @@ amount = 32
 lifetime = 7.0
 mesh = SubResource( 5 )
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Interactive_Rock.obj-e9eac32207a0340380f2b1c7c141fe72.mesh"
+
+[deps]
+
+files=[ "res://.import/Interactive_Rock.obj-e9eac32207a0340380f2b1c7c141fe72.mesh" ]
+
+source_file="res://Assets/Landscape/Interactive_Rock.obj"
+dest_files=[ "res://.import/Interactive_Rock.obj-e9eac32207a0340380f2b1c7c141fe72.mesh", "res://.import/Interactive_Rock.obj-e9eac32207a0340380f2b1c7c141fe72.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
