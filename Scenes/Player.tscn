@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/SpringArm.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Assets/_defaultMat.material" type="Material" id=3]
 [ext_resource path="res://Scenes/Movable_object_Anim.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Blender Assets/Player Assets/Hat.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://Assets/City_Biome_Floor.material" type="Material" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -34,3 +36,8 @@ fov = 85.0
 
 [node name="Movable_object_Anim" parent="." instance=ExtResource( 4 )]
 transform = Transform( -8.14603e-09, 0.00868241, 0.0492404, 0, 0.0492404, -0.00868241, -0.05, -1.41454e-09, -8.02228e-09, 0, 0.820878, -0.773672 )
+
+[node name="Hat" type="MeshInstance" parent="."]
+transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, -0.0938535, 1.17815, 0.0316576 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 6 )
