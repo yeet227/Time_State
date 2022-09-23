@@ -1,7 +1,9 @@
 extends DirectionalLight
 
-var Speed = 8.0
-var point = Vector3(10, 153.0, -128.8)
+var Speed = 0.3
+var point = Vector3(10, 10, 0)
+var Interaction_Delay = 7.0
+var Second_Delay = 3.0
 
 func _process(delta):
 	var direction
