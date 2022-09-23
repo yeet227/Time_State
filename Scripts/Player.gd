@@ -40,10 +40,8 @@ func _process(delta):
 		Stamina = true
 		speed = 30.0
 		print(speed) # Speedometer for Output Logging Purposes
-		print("Stamina On")
 		yield(get_tree().create_timer(Stamina_Length),"timeout")
 		Input.is_action_just_released("Stamina")
 		Stamina = false
 		speed = 16.0
 		print(speed) #Speedometer for Logging Purposes
-		print("Stamina Off")
