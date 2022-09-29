@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Landscape/Wood_Fire.glb" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Landscape/WoodFire_Outline.material" type="Material" id=2]
@@ -10,6 +10,11 @@ data = PoolVector3Array( 1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1, -1, 1,
 material = ExtResource( 2 )
 height = 1.0
 is_hemisphere = true
+
+[sub_resource type="Curve" id=3]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0.039604, -65.4545 ), 0.0, -487.12, 0, 0, Vector2( 0.891089, 314.182 ), -542.434, 0.0, 0, 0 ]
 
 [node name="Wood_Fire" instance=ExtResource( 1 )]
 
@@ -23,6 +28,12 @@ shape = SubResource( 2 )
 
 [node name="CPUParticles" type="CPUParticles" parent="." index="1"]
 transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.250667, -0.787995 )
+draw_order = 1
 mesh = SubResource( 1 )
 gravity = Vector3( 0, 3.8, 0 )
+initial_velocity = 4.0
+initial_velocity_random = 1.0
+angular_velocity = 39.63
+angular_velocity_random = 0.24
+angular_velocity_curve = SubResource( 3 )
 color = Color( 0.8, 0.0901961, 0.0901961, 1 )

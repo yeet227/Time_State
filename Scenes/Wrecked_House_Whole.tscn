@@ -65,6 +65,7 @@ material/0 = SubResource( 1 )
 shape = SubResource( 4 )
 
 [node name="Cube008" parent="." index="3"]
+transform = Transform( 3.2094, -0.10855, -0.0250946, -0.832011, 0.0281406, -0.0968001, 1.12138, 0.331549, -1.19209e-08, 1.87655, 4.81828, -3.38711 )
 material/0 = SubResource( 1 )
 
 [node name="StaticBody" type="StaticBody" parent="Cube008" index="0"]

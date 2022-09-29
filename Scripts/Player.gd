@@ -6,6 +6,7 @@ export var speed = 16.0 #Character Speed
 export var Stamina_Delay : float = 10.0 #How many Seconds between stamina use
 export var Stamina_Length : float = 25.0 #Length of time for the use of stamina to be in effect
 var Stamina = false
+var Health = 35
 
 var _velocity := Vector3.ZERO
 var _snap_vector := Vector3.DOWN

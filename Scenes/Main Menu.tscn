@@ -8,9 +8,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -54,5 +51,8 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+
 [connection signal="pressed" from="Label/Play_Button" to="Label/Play_Button" method="_on_Play_Button_pressed"]
 [connection signal="pressed" from="Label/Show_FPS" to="Label/Show_FPS" method="_on_Show_FPS_pressed"]
