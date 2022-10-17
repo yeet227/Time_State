@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Church_Temp.obj-501c18f520a46e0f94473c19407df72c.mesh"
+
+[deps]
+
+files=[ "res://.import/Church_Temp.obj-501c18f520a46e0f94473c19407df72c.mesh" ]
+
+source_file="res://Assets/Landscape/Church_Temp.obj"
+dest_files=[ "res://.import/Church_Temp.obj-501c18f520a46e0f94473c19407df72c.mesh", "res://.import/Church_Temp.obj-501c18f520a46e0f94473c19407df72c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
