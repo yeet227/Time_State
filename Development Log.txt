@@ -1,12 +1,16 @@
 # Time-State 3D Development Log
 
 Planned Features:
-Stamina
+Stamina (Completed)
 Stamina bar
-Health/Health Bar
-Basic Enemy Chase
-Big Map
-Low Polygon Graphics
+Health Bar
+Basic Enemy Chases Player
+Big Map (Completed)
+More Low Polygon Graphics
+
+Possible Features:
+Interaction System
+Basic Multiplayer
 
 
 Implemented Features:
