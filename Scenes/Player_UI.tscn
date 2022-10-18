@@ -1,0 +1,23 @@
+[gd_scene format=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health_Bar" type="ProgressBar" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -459.96
+margin_top = 3.89604
+margin_right = -38.9602
+margin_bottom = 60.896
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+value = 100.0
+
+[node name="Stamina_Bar" type="ProgressBar" parent="."]
+margin_right = 527.0
+margin_bottom = 55.0
