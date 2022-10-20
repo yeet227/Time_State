@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Hero_Helmet.obj-37226db10117cb818888fd60630dbe2e.mesh"
+
+[deps]
+
+files=[ "res://.import/Hero_Helmet.obj-37226db10117cb818888fd60630dbe2e.mesh" ]
+
+source_file="res://Assets/Blender Assets/Hero_Helmet.obj"
+dest_files=[ "res://.import/Hero_Helmet.obj-37226db10117cb818888fd60630dbe2e.mesh", "res://.import/Hero_Helmet.obj-37226db10117cb818888fd60630dbe2e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
