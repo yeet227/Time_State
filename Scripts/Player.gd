@@ -35,14 +35,14 @@ func _physics_process(delta):
 		var look_direction = Vector2(_velocity.z, _velocity.x)
 	
 
-func _process(delta):
+func _process(delta): 
 	_spring_arm.translation = translation
 	if Input.is_action_pressed("Stamina"):
 		Stamina = true
-		speed = 45.0
+		speed = 45.0 # The Value the speed is increased to while using the stamina function
 		print(speed) # Speedometer for Output Logging Purposes
-		yield(get_tree().create_timer(Stamina_Length),"timeout")
-		Input.is_action_just_released("Stamina")
-		Stamina = false
+		yield(get_tree().create_timer(Stamina_Length),"timeout") # Length of time between uses
+		Input.is_action_just_released("Stamina") # Releasing the stamina function will stop the use of the higher speed
+		Stamina = false # Function set to after realeasing the stamina Button
 		speed = 18.0
 		print(speed) #Speedometer for Logging Purposes
