@@ -15,12 +15,12 @@ onready var _spring_arm: SpringArm = $SpringArm
 
 func _physics_process(delta):
 	var move_direction := Vector3.ZERO
-	move_direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	move_direction.z = Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")
+	move_direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left") #Setting up controls for Left and Right Player Movement Acions.
+	move_direction.z = Input.get_action_strength("move_back") - Input.get_action_strength("move_forward") #Code for Setting up for player Moveent regarding forwards and Backwards
 	move_direction = move_direction.rotated(Vector3.UP, _spring_arm.rotation.y).normalized() 
-	_velocity.x = move_direction.x * speed
+	_velocity.x = move_direction.x * speed #Mathematics Relating to the X velocity is the same as move_direction times the speed set by the variable
 	_velocity.z = move_direction.z * speed
-	_velocity.y -= gravity * delta
+	_velocity.y -= gravity * delta # =Mathematics for velocity taking away from gravity times Delta (Delta Means the in game unti of time) to create the rate of falling by the player.
 	
 	var just_landed := is_on_floor() and _snap_vector == Vector3.ZERO
 	var is_jumping := is_on_floor() and Input.is_action_just_pressed("jump")
