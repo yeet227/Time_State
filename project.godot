@@ -17,9 +17,12 @@ _global_script_class_icons={
 
 config/name="Time State 3D"
 run/main_scene="res://Scenes/Main Menu.tscn"
-run/frame_delay_msec=10
 config/icon="res://Textures/Icon_2.png"
 config/windows_native_icon="res://Textures/New Project.ico"
+
+[audio]
+
+output_latency=0
 
 [autoload]
 
@@ -67,6 +70,10 @@ Stamina={
 [logging]
 
 file_logging/max_log_files=100
+
+[physics]
+
+3d/default_gravity_vector=Vector3( 0, 0, 0 )
 
 [rendering]
 

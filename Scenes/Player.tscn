@@ -14,8 +14,6 @@ rings = 16
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 2 )
-gravity = 100.0
-Stamina_Delay = 8.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.75, 0, 0, 0, -1.22191e-07, -1, 0, 0.75, -1.62921e-07, 0, 0, 0 )
