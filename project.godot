@@ -91,4 +91,3 @@ quality/shading/force_blinn_over_ggx=true
 quality/subsurface_scattering/quality=2
 quality/subsurface_scattering/scale=8
 quality/voxel_cone_tracing/high_quality=true
-environment/default_environment="res://default_env.tres"
