@@ -73,6 +73,7 @@ file_logging/max_log_files=100
 
 [physics]
 
+2d/thread_model=2
 3d/default_gravity_vector=Vector3( 0, 0, 0 )
 
 [rendering]
@@ -84,7 +85,6 @@ quality/shadow_atlas/size=16096
 quality/shadow_atlas/quadrant_0_subdiv=6
 quality/shadow_atlas/quadrant_1_subdiv=6
 quality/shadow_atlas/quadrant_2_subdiv=6
-quality/shadow_atlas/quadrant_3_subdiv=6
 quality/shading/force_vertex_shading=true
 quality/shading/force_lambert_over_burley=true
 quality/shading/force_blinn_over_ggx=true
