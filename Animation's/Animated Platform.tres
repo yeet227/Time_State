@@ -3,10 +3,4 @@
 [resource]
 resource_name = "CubeAction"
 length = 0.416667
-tracks/0/type = "transform"
-tracks/0/path = NodePath("Cube")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0.206886, 1, 0.0666667, 1, 0, 0, -0.0617284, 0, 0, 0, 1, 1, 0.206886, 1, 0.133333, 1, 0, 0, -0.458436, 0, 0, 0, 1, 1, 0.206886, 1, 0.333333, 1, 0, 0, -2.6214, 0, 0, 0, 1, 1, 0.206886, 1, 0.4, 1, 0, 0, -2.95885, 0, 0, 0, 1, 1, 0.206886, 1, 0.416667, 1, 0, 0, -3, 0, 0, 0, 1, 1, 0.206886, 1 )
+loop = true
