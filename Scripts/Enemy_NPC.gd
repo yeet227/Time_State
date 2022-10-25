@@ -14,7 +14,7 @@ func _process(delta):
 	else:
 		direction = point - transform.origin
 	move_and_slide(direction)
-	#print(transform)
+	print(transform)
 		
 
 

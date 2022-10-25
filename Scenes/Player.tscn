@@ -2,11 +2,10 @@
 
 [ext_resource path="res://Scenes/SpringArm.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Enemy.material" type="Material" id=3]
+[ext_resource path="res://Assets/Eyelashmat.material" type="Material" id=3]
 [ext_resource path="res://Scenes/Movable_object_Anim.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Blender Assets/Player Assets/Hat.obj" type="ArrayMesh" id=5]
 [ext_resource path="res://Assets/City_Biome_Floor.material" type="Material" id=6]
-
 
 [sub_resource type="CapsuleShape" id=1]
 
