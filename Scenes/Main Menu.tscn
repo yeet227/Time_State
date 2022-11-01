@@ -1,21 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Button.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Main Menu.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Show_FPS.gd" type="Script" id=3]
+[ext_resource path="res://Images/Tree.png" type="Texture" id=4]
 
 [node name="Node2D" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.156863, 0.694118, 0.780392, 0.34902 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ColorRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 760.52
