@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Launch_Pad.obj-139978b4dd5e74694deb54fb6b09f9e8.mesh"
+
+[deps]
+
+files=[ "res://.import/Launch_Pad.obj-139978b4dd5e74694deb54fb6b09f9e8.mesh" ]
+
+source_file="res://Assets/Obj_files/Launch_Pad.obj"
+dest_files=[ "res://.import/Launch_Pad.obj-139978b4dd5e74694deb54fb6b09f9e8.mesh", "res://.import/Launch_Pad.obj-139978b4dd5e74694deb54fb6b09f9e8.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

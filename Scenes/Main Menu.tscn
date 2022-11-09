@@ -34,10 +34,14 @@ __meta__ = {
 }
 
 [node name="Play_Button" type="Button" parent="Label"]
-margin_left = 214.483
-margin_top = 202.443
-margin_right = 627.483
-margin_bottom = 327.443
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.728
+margin_top = 207.314
+margin_right = 262.272
+margin_bottom = 332.314
 text = "Play"
 script = ExtResource( 1 )
 __meta__ = {
@@ -46,11 +50,11 @@ __meta__ = {
 scene_to_load = "res://Scenes/Main Game.tscn"
 
 [node name="Show_FPS" type="Button" parent="Label"]
-margin_left = -111.605
-margin_top = 225.15
-margin_right = 143.395
-margin_bottom = 313.15
-text = "Show FPS:OFF"
+margin_left = 90.3786
+margin_top = 445.222
+margin_right = 345.379
+margin_bottom = 533.222
+text = "Press Button!!!"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
