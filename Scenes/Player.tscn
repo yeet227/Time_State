@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/SpringArm.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Movable_object_Anim.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Blender Assets/Player Assets/Hat.obj" type="ArrayMesh" id=5]
 [ext_resource path="res://Assets/City_Biome_Floor.material" type="Material" id=6]
+[ext_resource path="res://Scripts/FPS_Counter.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -39,3 +40,16 @@ transform = Transform( -8.14603e-09, 0.00868241, 0.0492404, 0, 0.0492404, -0.008
 transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, -0.0938535, 1.17815, 0.0316576 )
 mesh = ExtResource( 5 )
 material/0 = ExtResource( 6 )
+
+[node name="FPS_Counter" type="Label" parent="."]
+margin_right = 78.0
+margin_bottom = 36.0
+rect_scale = Vector2( 1.5, 1.5 )
+custom_colors/font_color = Color( 1, 0.00392157, 0.00392157, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+valign = 1
+percent_visible = -0.25
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
