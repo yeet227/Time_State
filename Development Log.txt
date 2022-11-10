@@ -2,21 +2,23 @@
 
 Planned Features:
 Stamina (Completed)
-Stamina bar
-Health Bar
-Basic Enemy Chases Player
+Stamina bar(WIP)
+Health Bar(WIP)
+Basic Enemy Chases Player(WIP)
 Big Map (Completed)
-More Low Polygon Graphics
+More Low Polygon Graphics(Almost Finished)
+Bounce Pad Physics(Completed)
 
 Possible Features:
-Interaction System
-Basic Multiplayer
+Interaction System(Not Happening)
+Basic Multiplayer(WIP)
 
 
 Implemented Features:
 Stamina
 Low Polygon Graphics
 Big Map
+Bouncepad physics
 
 More To be Added Soon!
 
