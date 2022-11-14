@@ -54,7 +54,7 @@ margin_left = 90.3786
 margin_top = 445.222
 margin_right = 345.379
 margin_bottom = 533.222
-text = "Press Button!!!"
+text = "Game Crash!"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
