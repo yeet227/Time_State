@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Button.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Main Menu.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Show_FPS.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Button_Rename.gd" type="Script" id=3]
 [ext_resource path="res://Images/Tree.png" type="Texture" id=4]
 
 [node name="Node2D" type="Control"]
@@ -54,7 +54,7 @@ margin_left = 90.3786
 margin_top = 445.222
 margin_right = 345.379
 margin_bottom = 533.222
-text = "Game Crash!"
+text = "Game Crash! (Safe)"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
