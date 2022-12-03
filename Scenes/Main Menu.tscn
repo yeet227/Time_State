@@ -22,10 +22,10 @@ rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 760.52
-margin_top = 270.861
-margin_right = 1101.52
-margin_bottom = 373.861
+margin_left = 805.615
+margin_top = 464.602
+margin_right = 1146.61
+margin_bottom = 567.602
 text = "Time Wars"
 align = 1
 valign = 1
@@ -38,10 +38,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -150.728
-margin_top = 207.314
-margin_right = 262.272
-margin_bottom = 332.314
+margin_left = -202.504
+margin_top = 77.0398
+margin_right = 210.496
+margin_bottom = 202.04
 text = "Play"
 script = ExtResource( 1 )
 __meta__ = {
@@ -50,10 +50,10 @@ __meta__ = {
 scene_to_load = "res://Scenes/Main Game.tscn"
 
 [node name="Show_FPS" type="Button" parent="Label"]
-margin_left = 90.3786
-margin_top = 445.222
-margin_right = 345.379
-margin_bottom = 533.222
+margin_left = 38.603
+margin_top = 314.948
+margin_right = 293.603
+margin_bottom = 402.948
 text = "Game Crash! (Safe)"
 script = ExtResource( 3 )
 __meta__ = {

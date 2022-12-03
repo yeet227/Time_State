@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Textures/older-wood-flooring-bl/Wood_Flooring.tres" type="Material" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+
+[node name="Material_Test" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 7.03278, 0, 0, 0, 1, 0, 0, 0, 8.09545, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
