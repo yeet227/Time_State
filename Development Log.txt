@@ -1,24 +1,21 @@
 # Time-State 3D Development Log
+Legend:
+WIP means Work In Progress
+MNH means Might Not Happen, Because the state of the project is consistently changing
+Completed obviously means that the feature has been made and is complete, but still may contain bugs or issues during gameplay
 
 Planned Features:
 Stamina (Completed)
-Stamina bar(WIP)
-Health Bar(WIP)
-Basic Enemy Chases Player(WIP)
-Big Map (Completed)
-More Low Polygon Graphics(Almost Finished)
-Bounce Pad Physics(Completed)
+Stamina bar (WIP)
+Health Bar (WIP)
+Enemy Chases Player and Attacks (WIP)
+Open World Map (WIP)
+More Low Polygon Graphics (Almost Finished)
+Bounce Pad Physics (Completed)
 
 Possible Features:
 Interaction System(Not Happening)
-Basic Multiplayer(WIP)
-
-
-Implemented Features:
-Stamina
-Low Polygon Graphics
-Big Map
-Bouncepad physics
+Basic Multiplayer(Might Not Happen)
 
 More To be Added Soon!
 
