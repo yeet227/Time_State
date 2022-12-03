@@ -47,9 +47,21 @@ margin_bottom = 36.0
 rect_scale = Vector2( 1.5, 1.5 )
 custom_colors/font_color = Color( 1, 0.00392157, 0.00392157, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "FPS:"
 valign = 1
-percent_visible = -0.25
 script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -400.0
+margin_bottom = 50.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+value = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

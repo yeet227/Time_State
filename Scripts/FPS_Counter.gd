@@ -18,4 +18,4 @@ func _process(_delta: float) -> void:
 	fps = times.size()
 
 	# Display FPS in the label
-	text = str(fps) + " FPS"
+	text = "FPS:" + str(fps)

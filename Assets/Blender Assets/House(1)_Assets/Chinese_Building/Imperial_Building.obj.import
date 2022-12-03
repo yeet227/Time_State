@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Imperial_Building.obj-14c82c28e7e5d250969a1f7b937f4195.mesh"
+
+[deps]
+
+files=[ "res://.import/Imperial_Building.obj-14c82c28e7e5d250969a1f7b937f4195.mesh" ]
+
+source_file="res://Assets/Blender Assets/House(1)_Assets/Chinese_Building/Imperial_Building.obj"
+dest_files=[ "res://.import/Imperial_Building.obj-14c82c28e7e5d250969a1f7b937f4195.mesh", "res://.import/Imperial_Building.obj-14c82c28e7e5d250969a1f7b937f4195.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
