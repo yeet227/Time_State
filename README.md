@@ -1,7 +1,6 @@
 # Time_State_3D
-A 3D Godot Game that is open world (Work In Progress)
+A 3D Godot Game that is open world and is a Work In Progress
 
 Disclaimer: All Assets are made by Me, and no outsourceing was done in the making of this project.
-Another Disclaimer: This Game is Early in Development and is prone to bugs graphically or within the project code depending on how it is implemented or compiled
 
-This Game is meant to be open world but due to time constraints has to be limited to roughly 4 Kilometers in size which is the equivalant to 1.54441 Miles Squared and the theme is to be a mix of time periods with weapons that are futurisitc in nature and "Old School" meaning Swords, Axes, and MORE!!!
+This Game is Early in Development and may be prone to bugs graphically or within the project code depending on how it is implemented or compiled after the finished product is released, although the project can be updated and fixed by anyone willing to help by pushing the pull request button after modifying or fixing the issue and i will review the code and either approve or deny the change.
