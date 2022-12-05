@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Button.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Main Menu.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Button_Rename.gd" type="Script" id=3]
 [ext_resource path="res://Images/Tree.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Scene_Change_Controls.gd" type="Script" id=5]
 
 [node name="Node2D" type="Control"]
 anchor_right = 1.0
@@ -20,6 +21,9 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="."]
 margin_left = 805.615
@@ -49,7 +53,7 @@ __meta__ = {
 }
 scene_to_load = "res://Scenes/Main Game.tscn"
 
-[node name="Show_FPS" type="Button" parent="Label"]
+[node name="Game_Crash" type="Button" parent="Label"]
 margin_left = 38.603
 margin_top = 314.948
 margin_right = 293.603
@@ -60,6 +64,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Controls" type="Button" parent="Label"]
+margin_left = -356.179
+margin_top = 138.646
+margin_right = -73.1792
+margin_bottom = 250.646
+text = "Controls"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 [connection signal="pressed" from="Label/Play_Button" to="Label/Play_Button" method="_on_Play_Button_pressed"]
-[connection signal="pressed" from="Label/Show_FPS" to="Label/Show_FPS" method="_on_Show_FPS_pressed"]
+[connection signal="pressed" from="Label/Game_Crash" to="Label/Game_Crash" method="_on_Show_FPS_pressed"]
+[connection signal="pressed" from="Label/Controls" to="Label/Controls" method="_on_Controls_pressed"]
