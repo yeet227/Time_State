@@ -1,8 +1,46 @@
 # Time_State
-A 3D Godot Game that is open world and is a Work In Progress
 
-Disclaimer: All Assets are made by Me, and no outsourcing was done in the making of this project.
+A 3D open-world prototype built in **Godot Engine 3.5**. Explore a dynamic environment featuring real-time day/night cycles, stamina-driven movement, and interactive NPC behaviors.
 
-This Game is Early in Development and may be prone to bugs graphically or within the project code depending on how it is implemented or compiled after the finished product is Compiled into EXE, DMG, or TPZ although the project can be updated and fixed by anyone willing to help by pushing the pull request button after modifying or fixing the issue and I will review the code and either approve or deny the change.
+---
 
-Secondary Disclaimer: This game can also be released with another person's vision as long as it does not contain all of my work up to the point of the current project stage so removal of original assets' except for the map will need to be required, and if caught releasing my work will be met with legal action, THANK YOU!
+## 🎮 Features
+- **Player Mechanics:** Smooth 3D third-person/first-person controls, jumping, and stamina-regulated sprinting.
+- **Dynamic Time System:** Rotating sun system simulating day/night illumination cycles.
+- **AI & NPCs:** Basic pathing and target acquisition for non-player characters.
+- **In-Game Utilities:** Debug FPS counter and UI menus.
+
+---
+
+## 🛠️ Requirements & Getting Started
+* **Engine:** Godot Engine 3.5.x (Standard Version).
+* **Setup:**
+  1. Clone this repository or download the ZIP:
+     ```bash
+     git clone [https://github.com/yeet227/Time_State.git](https://github.com/yeet227/Time_State.git)
+     ```
+  2. Open Godot, click **Import**, select `project.godot` inside the project folder, and press **Edit**.
+  3. Press **F5** (or the Play button) to launch the main scene.
+
+---
+
+## ⌨️ Controls
+Configure in `Project Settings > Input Map`:
+
+| Action | Default Key | Description |
+| :--- | :--- | :--- |
+| `move_forward` | `W` / `Up Arrow` | Move forward |
+| `move_backward` | `S` / `Down Arrow` | Move backward |
+| `move_left` | `A` / `Left Arrow` | Move left |
+| `move_right` | `D` / `Right Arrow` | Move right |
+| `jump` | `Space` | Jump |
+| `Stamina` | `Shift` | Sprint (consumes stamina) |
+| `toggle_fps` | `F3` | Toggle FPS display |
+
+---
+
+## 📋 Roadmap
+- [ ] On-screen HUD for Stamina and Health bars.
+- [ ] NPC state machine (Patrol, Alert, Chase, Return).
+- [ ] Environment lighting curves synced with the sun cycle.
+- [ ] Transition/migration to Godot 4.x.

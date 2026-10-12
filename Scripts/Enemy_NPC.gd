@@ -1,25 +1,42 @@
 extends KinematicBody
 
-var Speed = 10.0 #The speed at which the enemy is travelling to the designated Vector
-var point = Vector3(10, 10, 0) #The place where Enemy is traveling too
-var Interaction_Delay = 7.0 #Time between the dialogue being output for the first part of dialogue
-var Second_Delay = 5.0 #Time between the dialogue being output for the second part of dialogue
+export var move_speed: float = 6.0
+export var gravity: float = 20.0
+export var stop_distance: float = 1.5
 
-func _process(delta): #this part of the code is meant to remove any point of overshoot within the enemy traveling a certain distance befoore stopping.
-	var direction
-	
-	if point.distance_to(transform.origin) > 0.05:
-		direction = point - transform.origin
-		direction = direction.normalized() * Speed
+var velocity: Vector3 = Vector3.ZERO
+var target_node: Spatial = null
+
+func set_target(new_target: Spatial) -> void:
+	target_node = new_target
+
+func _physics_process(delta: float) -> void:
+	# Apply gravity
+	if not is_on_floor():
+		velocity.y -= gravity * delta
 	else:
-		direction = point - transform.origin
-	move_and_slide(direction)
-	print(transform)
-		
+		velocity.y = -0.1
 
+	if target_node and is_instance_valid(target_node):
+		var current_pos := global_transform.origin
+		var target_pos := target_node.global_transform.origin
+		var diff := target_pos - current_pos
+		diff.y = 0.0 # Restrict horizontal calculation
 
-func _on_Area_body_entered(KinematicBody): # this part of the script has been made to create an output in the logs to interact with the player
-	yield(get_tree().create_timer(Interaction_Delay),"timeout") #Delay between the player entering area and the warning
-	print("I Would Move Out Of The Way If I Was You") #the dialogue that is outputted after a set time
-	yield(get_tree().create_timer(Second_Delay),"timeout") #Delay between the player entering area before being shot 
-	print("Bang!!") #the dialogue that is outputted after a set time
+		var distance := diff.length()
+		if distance > stop_distance:
+			var dir := diff.normalized()
+			velocity.x = dir.x * move_speed
+			velocity.z = dir.z * move_speed
+
+			# Rotate enemy to face target smoothly
+			var target_angle := atan2(-dir.x, -dir.z)
+			rotation.y = lerp_angle(rotation.y, target_angle, 8.0 * delta)
+		else:
+			velocity.x = lerp(velocity.x, 0.0, 10.0 * delta)
+			velocity.z = lerp(velocity.z, 0.0, 10.0 * delta)
+	else:
+		velocity.x = lerp(velocity.x, 0.0, 10.0 * delta)
+		velocity.z = lerp(velocity.z, 0.0, 10.0 * delta)
+
+	velocity = move_and_slide(velocity, Vector3.UP)

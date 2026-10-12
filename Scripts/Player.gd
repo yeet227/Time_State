@@ -1,48 +1,82 @@
 extends KinematicBody
 
-export var jump_strength = 12.0 #Character force of jump
-export var gravity = 30.0 #Character Gravity
-export var speed = 18.0 #Character Speed
-export var Stamina_Delay : float = 10.0 #How many Seconds between stamina use
-export var Stamina_Length : float = 25.0 #Length of time for the use of stamina to be in effect
-var Stamina = false
-var Health = 35
+# --- Movement Parameters ---
+export var walk_speed: float = 12.0
+export var sprint_speed: float = 18.0
+export var acceleration: float = 10.0
+export var jump_impulse: float = 14.0
+export var gravity: float = 30.0
 
-var _velocity := Vector3.ZERO
-var _snap_vector := Vector3.DOWN
+# --- Stamina System ---
+export var max_stamina: float = 100.0
+export var stamina_drain_rate: float = 25.0   # Drain per second while sprinting
+export var stamina_regen_rate: float = 15.0   # Regen per second while resting
+export var stamina_regen_delay: float = 1.0   # Seconds before regen starts after sprinting
 
-onready var _spring_arm: SpringArm = $SpringArm
+var current_stamina: float = 100.0
+var time_since_last_sprint: float = 0.0
 
-func _physics_process(delta):
-	var move_direction := Vector3.ZERO
-	move_direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left") #Setting up controls for Left and Right Player Movement Acions.
-	move_direction.z = Input.get_action_strength("move_back") - Input.get_action_strength("move_forward") #Code for Setting up for player Moveent regarding forwards and Backwards
-	move_direction = move_direction.rotated(Vector3.UP, _spring_arm.rotation.y).normalized() 
-	_velocity.x = move_direction.x * speed #Mathematics Relating to the X velocity is the same as move_direction times the speed set by the variable
-	_velocity.z = move_direction.z * speed
-	_velocity.y -= gravity * delta # =Mathematics for velocity taking away from gravity times Delta (Delta Means the in game unti of time) to create the rate of falling by the player.
+# --- Physics Vectors ---
+var velocity: Vector3 = Vector3.ZERO
+var snap_vector: Vector3 = Vector3.DOWN
+
+onready var camera_pivot: Spatial = $CameraPivot # Adjust path to match your scene
+
+func _ready() -> void:
+	current_stamina = max_stamina
+
+func _physics_process(delta: float) -> void:
+	# 1. Handle Horizontal Movement Inputs
+	var input_dir := Vector3.ZERO
+	if Input.is_action_pressed("move_forward"):
+		input_dir.z -= 1.0
+	if Input.is_action_pressed("move_backward"):
+		input_dir.z += 1.0
+	if Input.is_action_pressed("move_left"):
+		input_dir.x -= 1.0
+	if Input.is_action_pressed("move_right"):
+		input_dir.x += 1.0
+	input_dir = input_dir.normalized()
+
+	# Align input relative to camera view if pivot exists
+	var move_dir := input_dir
+	if camera_pivot:
+		move_dir = camera_pivot.global_transform.basis.xform(input_dir)
+		move_dir.y = 0.0
+		move_dir = move_dir.normalized()
+
+	# 2. Sprint & Stamina Logic
+	var is_moving := input_dir.length_squared() > 0.01
+	var is_trying_sprint := Input.is_action_pressed("Stamina")
+	var is_sprinting := false
+
+	if is_trying_sprint and is_moving and current_stamina > 0.0:
+		is_sprinting = true
+		current_stamina = max(0.0, current_stamina - stamina_drain_rate * delta)
+		time_since_last_sprint = 0.0
+	else:
+		time_since_last_sprint += delta
+		if time_since_last_sprint >= stamina_regen_delay:
+			current_stamina = min(max_stamina, current_stamina + stamina_regen_rate * delta)
+
+	# 3. Velocity Interpolation
+	var target_speed := sprint_speed if is_sprinting else walk_speed
+	var target_velocity := move_dir * target_speed
 	
-	var just_landed := is_on_floor() and _snap_vector == Vector3.ZERO
-	var is_jumping := is_on_floor() and Input.is_action_just_pressed("jump")
-	if is_jumping:
-		_velocity.y = jump_strength
-		_snap_vector = Vector3.ZERO
-	elif just_landed:
-		_snap_vector = Vector3.DOWN
-	_velocity = move_and_slide_with_snap(_velocity, _snap_vector, Vector3.UP, true)
-	
-	if _velocity.length() > 0.2:
-		var look_direction = Vector2(_velocity.z, _velocity.x)
-	
+	velocity.x = lerp(velocity.x, target_velocity.x, acceleration * delta)
+	velocity.z = lerp(velocity.z, target_velocity.z, acceleration * delta)
 
-func _process(delta): 
-	_spring_arm.translation = translation
-	if Input.is_action_pressed("Stamina"):
-		Stamina = true
-		speed = 45.0 # The Value the speed is increased to while using the stamina function
-		print(speed) # Speedometer for Output Logging Purposes
-		yield(get_tree().create_timer(Stamina_Length),"timeout") # Length of time between uses
-		Input.is_action_just_released("Stamina") # Releasing the stamina function will stop the use of the higher speed
-		Stamina = false # Function set to after realeasing the stamina Button
-		speed = 18.0
-		print(speed) #Speedometer for Logging Purposes
+	# 4. Vertical Movement & Gravity
+	if is_on_floor():
+		snap_vector = -get_floor_normal()
+		if Input.is_action_just_pressed("jump"):
+			velocity.y = jump_impulse
+			snap_vector = Vector3.ZERO # Disable snapping when jumping
+		else:
+			velocity.y = -0.1 # Keep grounded
+	else:
+		velocity.y -= gravity * delta
+		snap_vector = Vector3.ZERO
+
+	# 5. Move and Slide with snap
+	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true, 4, deg2rad(45.0))
