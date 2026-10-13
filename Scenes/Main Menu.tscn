@@ -74,8 +74,10 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+scene_to_load = "res://Scenes/Controls_Menu.tscn"
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+
 [connection signal="pressed" from="Label/Play_Button" to="Label/Play_Button" method="_on_Play_Button_pressed"]
 [connection signal="pressed" from="Label/Game_Crash" to="Label/Game_Crash" method="_on_Show_FPS_pressed"]
 [connection signal="pressed" from="Label/Controls" to="Label/Controls" method="_on_Controls_pressed"]

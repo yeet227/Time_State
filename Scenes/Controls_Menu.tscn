@@ -1,4 +1,6 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Scene_Change_Controls.gd" type="Script" id=1]
 
 [node name="Controls_Menu" type="Node2D"]
 position = Vector2( 960, 540 )
@@ -22,13 +24,31 @@ margin_left = -808.0
 margin_top = -341.0
 margin_right = 40.0
 margin_bottom = 14.0
-text = "Movement:
-W = Forward
-S = Backward
-A = Left
-D = Right
+rect_scale = Vector2( 2, 2 )
+text = "Controls & Movement:
 
-Spacebar = Jump"
+W = Move Forward
+S = Move Backward
+A = Strafe Left
+D = Strafe Right
+
+Shift = Sprint (Consumes Stamina)
+Spacebar = Jump
+Mouse = Look Around / Camera"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Back_Button" type="Button" parent="."]
+margin_left = -808.0
+margin_top = 260.0
+margin_right = -558.0
+margin_bottom = 360.0
+text = "Back to Menu"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+scene_to_load = "res://Scenes/Main Menu.tscn"
+
+[connection signal="pressed" from="Back_Button" to="Back_Button" method="_on_Controls_pressed"]

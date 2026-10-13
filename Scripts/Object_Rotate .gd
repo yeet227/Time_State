@@ -1,5 +1,7 @@
 extends MeshInstance
 
-func _physics_process(delta):
-	rotate_x(1.0)
-	rotate_z(1.0)
+export var rotation_speed: Vector3 = Vector3(1.0, 0.0, 1.0)
+
+func _physics_process(delta: float) -> void:
+	rotate_x(rotation_speed.x * delta)
+	rotate_z(rotation_speed.z * delta)

@@ -16,4 +16,5 @@ dest_files=[ "res://.import/Another_Character.obj-0c0d8ca0e10e7c9c7a7a2ca8924e6a
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
 offset_mesh=Vector3( 0, 0, 0 )
-optimize_mesh=true
+octahedral_compression=true
+optimize_mesh_flags=4286

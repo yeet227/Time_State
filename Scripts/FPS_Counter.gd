@@ -1,21 +1,20 @@
 extends Label
 
-# Timestamps of frames rendered in the last second
-var times := []
+export var update_interval: float = 0.2
+var _time_accumulator: float = 0.0
 
-# Frames per second
-var fps := 0
+func _ready() -> void:
+	# Show or hide based on Global settings if available
+	if "ShowFPS" in Global:
+		visible = Global.ShowFPS
 
+func _process(delta: float) -> void:
+	# Keep visibility in sync with Global.ShowFPS if desired
+	if "ShowFPS" in Global and not Global.ShowFPS and not visible:
+		return
 
-func _process(_delta: float) -> void:
-	var now := OS.get_ticks_msec()
-
-	# Remove frames older than 1 second in the `times` array
-	while times.size() > 0 and times[0] <= now - 1000:
-		times.pop_front()
-
-	times.append(now)
-	fps = times.size()
-
-	# Display FPS in the label
-	text = "FPS:" + str(fps)
+	_time_accumulator += delta
+	if _time_accumulator >= update_interval:
+		_time_accumulator = 0.0
+		var fps: int = Engine.get_frames_per_second()
+		text = "FPS: %d" % fps

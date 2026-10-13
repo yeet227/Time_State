@@ -20,17 +20,41 @@ var time_since_last_sprint: float = 0.0
 var velocity: Vector3 = Vector3.ZERO
 var snap_vector: Vector3 = Vector3.DOWN
 
-onready var camera_pivot: Spatial = $CameraPivot # Adjust path to match your scene
+# Property aliases for compatibility with scene overrides and jump pads
+var _velocity: Vector3 setget _set_velocity_alias, _get_velocity_alias
+var jump_strength: float setget _set_jump_strength, _get_jump_strength
+
+func _set_velocity_alias(v: Vector3) -> void:
+	velocity = v
+
+func _get_velocity_alias() -> Vector3:
+	return velocity
+
+func _set_jump_strength(v: float) -> void:
+	jump_impulse = v
+
+func _get_jump_strength() -> float:
+	return jump_impulse
+
+onready var camera_pivot: Spatial = (
+	get_node_or_null("CameraPivot") if has_node("CameraPivot")
+	else get_node_or_null("SpringArm")
+)
+onready var stamina_bar: ProgressBar = get_node_or_null("ProgressBar") as ProgressBar
 
 func _ready() -> void:
+	add_to_group("player")
 	current_stamina = max_stamina
+	if stamina_bar:
+		stamina_bar.max_value = max_stamina
+		stamina_bar.value = current_stamina
 
 func _physics_process(delta: float) -> void:
 	# 1. Handle Horizontal Movement Inputs
 	var input_dir := Vector3.ZERO
 	if Input.is_action_pressed("move_forward"):
 		input_dir.z -= 1.0
-	if Input.is_action_pressed("move_backward"):
+	if Input.is_action_pressed("move_back") or Input.is_action_pressed("move_backward"):
 		input_dir.z += 1.0
 	if Input.is_action_pressed("move_left"):
 		input_dir.x -= 1.0
@@ -58,6 +82,9 @@ func _physics_process(delta: float) -> void:
 		time_since_last_sprint += delta
 		if time_since_last_sprint >= stamina_regen_delay:
 			current_stamina = min(max_stamina, current_stamina + stamina_regen_rate * delta)
+
+	if stamina_bar:
+		stamina_bar.value = current_stamina
 
 	# 3. Velocity Interpolation
 	var target_speed := sprint_speed if is_sprinting else walk_speed

@@ -12,8 +12,12 @@ onready var _spring_arm: SpringArm = $SpringArm
 func _physics_process(delta):
 	var move_direction := Vector3.ZERO
 	move_direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	move_direction.z = Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")
-	move_direction = move_direction.rotated(Vector3.UP, _spring_arm.rotation.y).normalized() 
+	var back_strength := max(Input.get_action_strength("move_back"), Input.get_action_strength("move_backward"))
+	move_direction.z = back_strength - Input.get_action_strength("move_forward")
+	if _spring_arm:
+		move_direction = move_direction.rotated(Vector3.UP, _spring_arm.rotation.y).normalized()
+	else:
+		move_direction = move_direction.normalized()
 	_velocity.x = move_direction.x * speed
 	_velocity.z = move_direction.z * speed
 	_velocity.y -= gravity * delta
@@ -27,5 +31,6 @@ func _physics_process(delta):
 		_snap_vector = Vector3.DOWN
 	_velocity = move_and_slide_with_snap(_velocity, _snap_vector, Vector3.UP, true)
 
-	if _velocity.length() > 0.2:
-		var look_direction = Vector2(_velocity.z, _velocity.x)
+	if _velocity.length() > 0.2 and has_node("CollisionShape"):
+		var look_direction := Vector2(_velocity.z, _velocity.x)
+		$CollisionShape.rotation.y = look_direction.angle()

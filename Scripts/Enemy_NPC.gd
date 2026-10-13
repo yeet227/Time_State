@@ -10,6 +10,16 @@ var target_node: Spatial = null
 func set_target(new_target: Spatial) -> void:
 	target_node = new_target
 
+func _on_Area_body_entered(body: Node) -> void:
+	if body == self:
+		return
+	if body.is_in_group("player") or body.name == "Player":
+		set_target(body as Spatial)
+
+func _on_Area_body_exited(body: Node) -> void:
+	if body == target_node:
+		target_node = null
+
 func _physics_process(delta: float) -> void:
 	# Apply gravity
 	if not is_on_floor():

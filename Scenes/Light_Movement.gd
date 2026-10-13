@@ -1,15 +1,15 @@
 extends DirectionalLight
 
-var Speed = 125.0 #The speed at which the Light Source in this case meaning the Sun is travelling to the designated Vector
-var point = Vector3(10, 10, 0) #The place where Sun is traveling too
+export var speed: float = 125.0
+export var target_point: Vector3 = Vector3(10, 10, 0)
 
-func _process(delta): #This part of the code was meant to mkae the sun travel to the specified Vector and slow down the movement to minimise jitter when close to the destination.
-	var direction
+func _process(delta: float) -> void:
+	var current_pos: Vector3 = transform.origin
+	var distance: float = current_pos.distance_to(target_point)
 	
-	if point.distance_to(transform.origin) > 0.05:
-		direction = point - transform.origin
-		direction = direction.normalized() * Speed
+	if distance > 0.05:
+		var direction: Vector3 = (target_point - current_pos).normalized()
+		translation += direction * speed * delta
 	else:
-		direction = point - transform.origin
-	#print(transform)
-		
+		translation = target_point
+		set_process(false) # Destination reached, sleep process to optimize CPU

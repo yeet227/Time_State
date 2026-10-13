@@ -1,5 +1,12 @@
 extends Area
 
+export var launch_force: float = 50.0
 
-func _on_Area_body_entered(body): # This function allows the player to jump on an designated area and be launched based on the value set such as the "50" in the second line
-	body._velocity += Vector3.UP * 50
+func _on_Area_body_entered(body: Node) -> void:
+	if "velocity" in body:
+		body.velocity.y = max(body.velocity.y, 0.0) + launch_force
+	elif "_velocity" in body:
+		body._velocity.y = max(body._velocity.y, 0.0) + launch_force
+
+func _on_Area_body_exited(_body: Node) -> void:
+	pass

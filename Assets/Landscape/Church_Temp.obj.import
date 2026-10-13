@@ -16,4 +16,5 @@ dest_files=[ "res://.import/Church_Temp.obj-501c18f520a46e0f94473c19407df72c.mes
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
 offset_mesh=Vector3( 0, 0, 0 )
-optimize_mesh=true
+octahedral_compression=true
+optimize_mesh_flags=4286
