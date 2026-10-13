@@ -20,21 +20,25 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = -808.0
-margin_top = -341.0
-margin_right = 40.0
-margin_bottom = 14.0
-rect_scale = Vector2( 2, 2 )
-text = "Controls & Movement:
+margin_left = -840.0
+margin_top = -460.0
+margin_right = 10.0
+margin_bottom = -90.0
+rect_scale = Vector2( 1.8, 1.8 )
+text = "Controls & Gameplay Keybindings:
 
-W = Move Forward
-S = Move Backward
-A = Strafe Left
-D = Strafe Right
-
+W / A / S / D = Move & Strafe
 Shift = Sprint (Consumes Stamina)
-Spacebar = Jump
-Mouse = Look Around / Camera"
+Spacebar = Jump (or Ascend when Flight Mode is active)
+Ctrl / C = Descend (when Flight Mode is active)
+Mouse = Aim / Look Around
+Left Click / Right Click = Shoot Energy Projectile
+E = Interact / Open Supply Chest
+I or Tab = Open Inventory & Chest Storage
+F1 = Open Cheat Menu (God Mode, Infinite Speed, Flight, Multipliers)
+V = Quick Toggle Flight Mode
+F5 / F9 = Quick Save / Quick Load Game
+Esc = Pause Menu & Settings"
 __meta__ = {
 "_edit_use_anchors_": false
 }
