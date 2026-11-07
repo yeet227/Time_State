@@ -30,6 +30,29 @@ var _chest_section: VBoxContainer
 var _chest_title_label: Label
 var _chest_list_vbox: VBoxContainer
 
+# --- Avenue 4: Weapon HUD ---
+var _weapon_box: ColorRect
+var _weapon_title: Label
+var _weapon_detail: Label
+var _weapon_hotkeys: Label
+
+# --- Avenue 4: Chrono Dilation Visuals ---
+var _chrono_overlay: ColorRect
+var _chrono_label: Label
+var _chrono_pulse_time: float = 0.0
+
+# --- Avenue 4: Vehicle Dashboard ---
+var _vehicle_dashboard: Panel
+var _speedometer_label: Label
+var _speed_bar: ProgressBar
+var _nitro_bar: ProgressBar
+var _gear_label: Label
+
+# --- Avenue 4: Landmark Banner ---
+var _landmark_panel: Panel
+var _landmark_label: Label
+var _landmark_timer: float = 0.0
+
 # --- Cheat Controls ---
 var _chk_god: CheckBox
 var _chk_inf_speed: CheckBox
@@ -68,8 +91,13 @@ func _ready() -> void:
 	var _e4 := Global.connect("cheats_changed", self, "_sync_cheat_controls")
 	var _e5 := Global.connect("settings_changed", self, "_sync_settings_controls")
 	var _e6 := Global.connect("notification_requested", self, "show_toast")
+	var _e7 := Global.connect("weapon_changed", self, "_on_weapon_changed")
+	var _e8 := Global.connect("chrono_dilation_changed", self, "_on_chrono_dilation_changed")
+	var _e9 := Global.connect("vehicle_state_changed", self, "_on_vehicle_state_changed")
+	var _e10 := Global.connect("landmark_discovered", self, "_on_landmark_discovered")
 
 	refresh_hud()
+	refresh_weapon_ui()
 	_sync_cheat_controls()
 	_sync_settings_controls()
 
@@ -202,6 +230,149 @@ func _build_hud() -> void:
 	_toast_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(_toast_label)
 
+	# Avenue 4: Chrono Dilation Fullscreen Overlay
+	_chrono_overlay = ColorRect.new()
+	_chrono_overlay.anchor_right = 1.0
+	_chrono_overlay.anchor_bottom = 1.0
+	_chrono_overlay.color = Color(0.12, 0.65, 0.95, 0.0)
+	_chrono_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(_chrono_overlay)
+
+	_chrono_label = Label.new()
+	_chrono_label.anchor_left = 0.5
+	_chrono_label.anchor_top = 0.04
+	_chrono_label.anchor_right = 0.5
+	_chrono_label.anchor_bottom = 0.04
+	_chrono_label.margin_left = -220.0
+	_chrono_label.margin_right = 220.0
+	_chrono_label.margin_bottom = 32.0
+	_chrono_label.align = Label.ALIGN_CENTER
+	_chrono_label.valign = Label.VALIGN_CENTER
+	_chrono_label.add_color_override("font_color", Color(0.35, 0.95, 1.0))
+	_chrono_label.add_color_override("font_color_shadow", Color(0.0, 0.0, 0.0, 1.0))
+	_chrono_label.text = ">> CHRONO DILATION: 0.32x SLOW-MO <<"
+	_chrono_label.visible = false
+	_chrono_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(_chrono_label)
+
+	# Avenue 4: Landmark Discovery Banner
+	_landmark_panel = Panel.new()
+	_landmark_panel.anchor_left = 0.5
+	_landmark_panel.anchor_top = 0.07
+	_landmark_panel.anchor_right = 0.5
+	_landmark_panel.anchor_bottom = 0.07
+	_landmark_panel.margin_left = -280.0
+	_landmark_panel.margin_top = 0.0
+	_landmark_panel.margin_right = 280.0
+	_landmark_panel.margin_bottom = 54.0
+	_landmark_panel.visible = false
+	root.add_child(_landmark_panel)
+
+	_landmark_label = Label.new()
+	_landmark_label.anchor_right = 1.0
+	_landmark_label.anchor_bottom = 1.0
+	_landmark_label.align = Label.ALIGN_CENTER
+	_landmark_label.valign = Label.VALIGN_CENTER
+	_landmark_label.add_color_override("font_color", Color(1.0, 0.88, 0.25))
+	_landmark_panel.add_child(_landmark_label)
+
+	# Avenue 4: Weapon Status Box (lower-right, above hint bar)
+	_weapon_box = ColorRect.new()
+	_weapon_box.anchor_left = 1.0
+	_weapon_box.anchor_top = 1.0
+	_weapon_box.anchor_right = 1.0
+	_weapon_box.anchor_bottom = 1.0
+	_weapon_box.margin_left = -340.0
+	_weapon_box.margin_top = -142.0
+	_weapon_box.margin_right = -16.0
+	_weapon_box.margin_bottom = -44.0
+	_weapon_box.color = Color(0.06, 0.07, 0.1, 0.82)
+	_weapon_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(_weapon_box)
+
+	_weapon_title = Label.new()
+	_weapon_title.margin_left = 14.0
+	_weapon_title.margin_top = 8.0
+	_weapon_title.margin_right = 310.0
+	_weapon_title.margin_bottom = 30.0
+	_weapon_title.add_color_override("font_color", Color(1.0, 0.85, 0.3))
+	_weapon_title.text = "EQUIPPED: Energy Blaster"
+	_weapon_box.add_child(_weapon_title)
+
+	_weapon_detail = Label.new()
+	_weapon_detail.margin_left = 14.0
+	_weapon_detail.margin_top = 32.0
+	_weapon_detail.margin_right = 310.0
+	_weapon_detail.margin_bottom = 54.0
+	_weapon_detail.text = "Ranged | 25 Dmg | Cost: 1 Ammo"
+	_weapon_box.add_child(_weapon_detail)
+
+	_weapon_hotkeys = Label.new()
+	_weapon_hotkeys.margin_left = 14.0
+	_weapon_hotkeys.margin_top = 58.0
+	_weapon_hotkeys.margin_right = 310.0
+	_weapon_hotkeys.margin_bottom = 80.0
+	_weapon_hotkeys.add_color_override("font_color", Color(0.65, 0.85, 1.0))
+	_weapon_hotkeys.text = "[1] Blaster  |  [2] Sword  |  [3] Axe"
+	_weapon_box.add_child(_weapon_hotkeys)
+
+	# Avenue 4: Vehicle Driving Dashboard (lower center)
+	_vehicle_dashboard = Panel.new()
+	_vehicle_dashboard.anchor_left = 0.5
+	_vehicle_dashboard.anchor_top = 1.0
+	_vehicle_dashboard.anchor_right = 0.5
+	_vehicle_dashboard.anchor_bottom = 1.0
+	_vehicle_dashboard.margin_left = -260.0
+	_vehicle_dashboard.margin_top = -175.0
+	_vehicle_dashboard.margin_right = 260.0
+	_vehicle_dashboard.margin_bottom = -46.0
+	_vehicle_dashboard.visible = false
+	root.add_child(_vehicle_dashboard)
+
+	_gear_label = Label.new()
+	_gear_label.anchor_right = 1.0
+	_gear_label.margin_top = 8.0
+	_gear_label.margin_bottom = 28.0
+	_gear_label.align = Label.ALIGN_CENTER
+	_gear_label.text = "GEAR: [DRIVE]  |  WASTELAND CRUISER"
+	_gear_label.add_color_override("font_color", Color(1.0, 0.9, 0.2))
+	_vehicle_dashboard.add_child(_gear_label)
+
+	_speedometer_label = Label.new()
+	_speedometer_label.anchor_right = 1.0
+	_speedometer_label.margin_top = 30.0
+	_speedometer_label.margin_bottom = 54.0
+	_speedometer_label.align = Label.ALIGN_CENTER
+	_speedometer_label.text = "SPEED: 0 KM/H"
+	_vehicle_dashboard.add_child(_speedometer_label)
+
+	var nitro_lbl := Label.new()
+	nitro_lbl.margin_left = 24.0
+	nitro_lbl.margin_top = 58.0
+	nitro_lbl.margin_right = 90.0
+	nitro_lbl.margin_bottom = 78.0
+	nitro_lbl.text = "NITRO:"
+	_vehicle_dashboard.add_child(nitro_lbl)
+
+	_nitro_bar = ProgressBar.new()
+	_nitro_bar.margin_left = 86.0
+	_nitro_bar.margin_top = 58.0
+	_nitro_bar.margin_right = 496.0
+	_nitro_bar.margin_bottom = 78.0
+	_nitro_bar.percent_visible = false
+	_nitro_bar.max_value = 100.0
+	_nitro_bar.value = 100.0
+	_vehicle_dashboard.add_child(_nitro_bar)
+
+	var veh_hint := Label.new()
+	veh_hint.anchor_right = 1.0
+	veh_hint.margin_top = 88.0
+	veh_hint.margin_bottom = 112.0
+	veh_hint.align = Label.ALIGN_CENTER
+	veh_hint.add_color_override("font_color", Color(0.75, 0.92, 1.0))
+	veh_hint.text = "[W/S] Throttle/Rev | [A/D] Steer | [Space] Drift | [Shift] Nitro | [E] Exit"
+	_vehicle_dashboard.add_child(veh_hint)
+
 	# Bottom Keybind Hints
 	var hints_bg := ColorRect.new()
 	hints_bg.anchor_top = 1.0
@@ -217,7 +388,7 @@ func _build_hud() -> void:
 	hints_lbl.anchor_bottom = 1.0
 	hints_lbl.align = Label.ALIGN_CENTER
 	hints_lbl.valign = Label.VALIGN_CENTER
-	hints_lbl.text = "[LMB/RMB] Shoot  |  [E] Interact/Chest  |  [I/Tab] Inventory  |  [F1] Cheat Menu  |  [V] Flight  |  [F5] Quick Save  |  [F9] Quick Load  |  [ESC] Pause"
+	hints_lbl.text = "[1/2/3] Weapon Swap  |  [LMB] Attack/Fire  |  [Q] Bullet Time  |  [E] Drive/Interact  |  [I/Tab] Inventory  |  [F1] Cheats  |  [ESC] Menu"
 	hints_bg.add_child(hints_lbl)
 
 func _build_modals() -> void:
@@ -531,7 +702,71 @@ func _process(delta: float) -> void:
 		_damage_flash_alpha = max(0.0, _damage_flash_alpha - delta * 1.8)
 		_damage_flash.color.a = _damage_flash_alpha
 
+	if _landmark_timer > 0.0:
+		_landmark_timer -= delta
+		if _landmark_timer <= 0.0 and _landmark_panel:
+			_landmark_panel.visible = false
+
+	# Chrono Dilation visual pulse
+	if _chrono_overlay:
+		if Global.chrono_dilation_active:
+			_chrono_pulse_time += delta * 4.5
+			var pulse := (sin(_chrono_pulse_time) + 1.0) * 0.5
+			_chrono_overlay.color.a = 0.16 + 0.12 * pulse
+			if _chrono_label:
+				_chrono_label.visible = true
+		else:
+			_chrono_overlay.color.a = 0.0
+			if _chrono_label:
+				_chrono_label.visible = false
+
+	# Vehicle Dashboard live updates
+	if _vehicle_dashboard:
+		if Global.is_driving and Global.current_vehicle and is_instance_valid(Global.current_vehicle):
+			_vehicle_dashboard.visible = true
+			var veh = Global.current_vehicle
+			var kmh := int(abs(veh.current_speed) * 3.6)
+			_speedometer_label.text = "SPEED: %d KM/H" % kmh
+			if _nitro_bar:
+				_nitro_bar.value = veh.nitro_fuel
+			if veh.is_boosting:
+				_gear_label.text = "GEAR: [NITRO TURBO BOOST]  |  WASTELAND CRUISER"
+				_gear_label.add_color_override("font_color", Color(0.3, 0.95, 1.0))
+			elif veh.current_speed < -0.5:
+				_gear_label.text = "GEAR: [REVERSE]  |  WASTELAND CRUISER"
+				_gear_label.add_color_override("font_color", Color(1.0, 0.4, 0.3))
+			else:
+				_gear_label.text = "GEAR: [DRIVE]  |  WASTELAND CRUISER"
+				_gear_label.add_color_override("font_color", Color(1.0, 0.9, 0.2))
+		else:
+			_vehicle_dashboard.visible = false
+
 	refresh_hud()
+
+func _on_weapon_changed(_new_id: String) -> void:
+	refresh_weapon_ui()
+
+func refresh_weapon_ui() -> void:
+	if _weapon_box == null or not Global.WEAPON_CONFIGS.has(Global.active_weapon):
+		return
+	var cfg: Dictionary = Global.WEAPON_CONFIGS[Global.active_weapon]
+	_weapon_title.text = "EQUIPPED: %s" % cfg["name"]
+	if cfg["type"] == "ranged":
+		_weapon_detail.text = "Ranged | %d Dmg | Cost: %d Ammo" % [int(cfg["damage"]), int(cfg["ammo_cost"])]
+	else:
+		_weapon_detail.text = "Melee | %d Dmg | Cost: %d Stamina" % [int(cfg["damage"]), int(cfg["stamina_cost"])]
+
+func _on_chrono_dilation_changed(_active: bool) -> void:
+	pass
+
+func _on_vehicle_state_changed(_is_driving: bool, _veh: Node) -> void:
+	pass
+
+func _on_landmark_discovered(landmark_name: String, faction_name: String) -> void:
+	if _landmark_panel and _landmark_label:
+		_landmark_label.text = "=== DISCOVERED: %s ===\n[%s]" % [landmark_name, faction_name]
+		_landmark_panel.visible = true
+		_landmark_timer = 5.0
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:

@@ -6,9 +6,66 @@ signal chest_changed(chest_id)
 signal cheats_changed
 signal settings_changed
 signal notification_requested(message)
+signal weapon_changed(new_weapon_id)
+signal chrono_dilation_changed(is_active)
+signal vehicle_state_changed(is_driving, vehicle_node)
+signal landmark_discovered(landmark_name, faction_name)
 
 const SAVE_FILE_PATH := "user://time_state_save.json"
 const SETTINGS_FILE_PATH := "user://time_state_settings.cfg"
+
+# --- Avenue 4: Weapons System ---
+const WEAPON_BLASTER := "blaster"
+const WEAPON_SWORD := "sword"
+const WEAPON_AXE := "axe"
+
+const WEAPON_CONFIGS := {
+	"blaster": {
+		"name": "Energy Blaster",
+		"type": "ranged",
+		"damage": 25.0,
+		"ammo_cost": 1,
+		"stamina_cost": 0.0,
+		"cooldown": 0.22,
+		"description": "Ranged energy projectile sidearm."
+	},
+	"sword": {
+		"name": "Wasteland Sword",
+		"type": "melee",
+		"damage": 38.0,
+		"ammo_cost": 0,
+		"stamina_cost": 14.0,
+		"cooldown": 0.32,
+		"description": "Fast slashing steel blade. Agile close-quarters strikes."
+	},
+	"axe": {
+		"name": "Scrapper Battleaxe",
+		"type": "melee",
+		"damage": 72.0,
+		"ammo_cost": 0,
+		"stamina_cost": 28.0,
+		"cooldown": 0.62,
+		"description": "Heavy crushing battleaxe. Massive cleave and knockback."
+	}
+}
+
+var active_weapon: String = WEAPON_BLASTER
+var unlocked_weapons: Dictionary = {
+	"blaster": true,
+	"sword": true,
+	"axe": true
+}
+
+# --- Avenue 4: Chrono Dilation (Bullet Time) ---
+var chrono_dilation_active: bool = false
+var chrono_dilation_drain_rate: float = 16.0
+
+# --- Avenue 4: Vehicle State ---
+var is_driving: bool = false
+var current_vehicle: Node = null
+
+# --- Avenue 4: Faction & Landmark Discoveries ---
+var discovered_landmarks: Dictionary = {}
 
 # --- Settings ---
 var ShowFPS: bool = true
@@ -79,6 +136,20 @@ const ITEM_DB := {
 		"type": "consumable",
 		"value": 100.0,
 		"description": "Fully restores Health and Stamina."
+	},
+	"sword_weapon": {
+		"id": "sword_weapon",
+		"name": "Wasteland Sword",
+		"type": "weapon",
+		"value": 38.0,
+		"description": "Steel slashing blade for fast melee brawling."
+	},
+	"axe_prototype": {
+		"id": "axe_prototype",
+		"name": "Scrapper Battleaxe",
+		"type": "weapon",
+		"value": 72.0,
+		"description": "Heavy crushing battleaxe. Massive cleave damage and knockback."
 	}
 }
 
@@ -188,6 +259,59 @@ func use_item_at(index: int, player_node: Node = null) -> bool:
 		var _removed := remove_item_at(index, 1)
 		emit_signal("stats_changed")
 	return used
+
+# --- Avenue 4: Weapon & Combat Operations ---
+func set_active_weapon(weapon_id: String) -> void:
+	if not WEAPON_CONFIGS.has(weapon_id):
+		return
+	if active_weapon == weapon_id:
+		return
+	active_weapon = weapon_id
+	emit_signal("weapon_changed", weapon_id)
+	var cfg: Dictionary = WEAPON_CONFIGS[weapon_id]
+	notify("Equipped %s (%s, %d Dmg)" % [cfg["name"], cfg["type"].capitalize(), int(cfg["damage"])])
+
+func cycle_weapon(direction: int = 1) -> void:
+	var weapons := [WEAPON_BLASTER, WEAPON_SWORD, WEAPON_AXE]
+	var cur_idx := weapons.find(active_weapon)
+	if cur_idx < 0:
+		cur_idx = 0
+	var next_idx := int(posmod(cur_idx + direction, weapons.size()))
+	set_active_weapon(weapons[next_idx])
+
+# --- Avenue 4: Chrono Dilation / Bullet Time ---
+func toggle_chrono_dilation() -> bool:
+	if chrono_dilation_active:
+		set_chrono_dilation(false)
+	else:
+		if current_stamina > 15.0 or god_mode:
+			set_chrono_dilation(true)
+		else:
+			notify("Not enough Stamina for Chrono Dilation!")
+	return chrono_dilation_active
+
+func set_chrono_dilation(active: bool) -> void:
+	if chrono_dilation_active == active:
+		return
+	chrono_dilation_active = active
+	Engine.time_scale = 0.32 if active else 1.0
+	emit_signal("chrono_dilation_changed", active)
+	if active:
+		notify(">> CHRONO DILATION: ACTIVE (0.32x Slow-Mo) <<")
+	else:
+		notify("Chrono Dilation Ended (Normal Time)")
+
+# --- Avenue 4: Faction & Landmark Discovery ---
+func discover_landmark(landmark_id: String, landmark_name: String, faction_name: String = "Wasteland Neutral") -> void:
+	if discovered_landmarks.has(landmark_id):
+		return
+	discovered_landmarks[landmark_id] = {
+		"name": landmark_name,
+		"faction": faction_name,
+		"discovered_at": OS.get_time()
+	}
+	emit_signal("landmark_discovered", landmark_name, faction_name)
+	notify("[DISCOVERED] %s (%s Territory)" % [landmark_name, faction_name])
 
 # --- Chest Storage Operations ---
 func ensure_chest_initialized(chest_id: String, default_items: Array = []) -> void:
@@ -324,7 +448,9 @@ func save_game(player_node: Spatial = null) -> bool:
 		"inventory": inventory,
 		"chest_storages": chest_storages,
 		"collected_world_items": collected_world_items,
-		"defeated_enemies": defeated_enemies
+		"defeated_enemies": defeated_enemies,
+		"active_weapon": active_weapon,
+		"discovered_landmarks": discovered_landmarks
 	}
 
 	var file := File.new()
@@ -389,6 +515,10 @@ func load_game(_tree: Object = null) -> bool:
 		collected_world_items = data["collected_world_items"]
 	if data.has("defeated_enemies") and typeof(data["defeated_enemies"]) == TYPE_DICTIONARY:
 		defeated_enemies = data["defeated_enemies"]
+	if data.has("active_weapon"):
+		set_active_weapon(str(data["active_weapon"]))
+	if data.has("discovered_landmarks") and typeof(data["discovered_landmarks"]) == TYPE_DICTIONARY:
+		discovered_landmarks = data["discovered_landmarks"]
 
 	pending_load_data = data
 	var target_scene: String = str(data.get("scene", "res://Scenes/Main Game.tscn"))

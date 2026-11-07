@@ -25,20 +25,27 @@ margin_top = -460.0
 margin_right = 10.0
 margin_bottom = -90.0
 rect_scale = Vector2( 1.8, 1.8 )
-text = "Controls & Gameplay Keybindings:
+text = "Time Wars: Wasteland Controls & Keybindings:
 
+[On Foot]
 W / A / S / D = Move & Strafe
 Shift = Sprint (Consumes Stamina)
-Spacebar = Jump (or Ascend when Flight Mode is active)
-Ctrl / C = Descend (when Flight Mode is active)
-Mouse = Aim / Look Around
-Left Click / Right Click = Shoot Energy Projectile
-E = Interact / Open Supply Chest
-I or Tab = Open Inventory & Chest Storage
-F1 = Open Cheat Menu (God Mode, Infinite Speed, Flight, Multipliers)
-V = Quick Toggle Flight Mode
-F5 / F9 = Quick Save / Quick Load Game
-Esc = Pause Menu & Settings"
+Spacebar = Jump (or Ascend in Flight)
+1 / 2 / 3 = Equip Weapon (1: Blaster | 2: Sword | 3: Axe)
+Mouse Wheel = Cycle Weapons
+Left Click = Attack / Fire Active Weapon
+Q = Toggle Chrono Dilation (Bullet Time / Slow-Mo)
+E = Enter / Drive Wasteland Cruiser | Open Chest
+
+[Vehicle Driving]
+W / S = Throttle Forward / Reverse
+A / D = Steer Left & Right
+Spacebar = Handbrake / Drift | Shift = Nitro Boost
+R = Reset / Upright Cruiser | E = Exit Vehicle
+
+[Menus & Cheats]
+I or Tab = Inventory & Storage | Esc = Pause Menu
+F1 = Cheat Menu | V = Flight Mode | F5/F9 = Save/Load"
 __meta__ = {
 "_edit_use_anchors_": false
 }

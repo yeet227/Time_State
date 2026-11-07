@@ -4,19 +4,45 @@ WIP means Work In Progress
 MNH means Might Not Happen, Because the state of the project is consistently changing
 Completed obviously means that the feature has been made and is complete, but still may contain bugs or issues during gameplay
 
-Planned Features:
-Stamina (Completed)
-Stamina bar (WIP)
-Health Bar (WIP)
-Enemy Chases Player and Attacks (WIP)
-Open World Map (WIP)
-More Low Polygon Graphics (Almost Finished)
-Bounce Pad Physics (Completed)
+Completed Features (Avenue 4: Dieselpunk Chrono-Wasteland RPG):
+- Drivable Wasteland Cruiser Vehicle (Completed)
+  * Real-time arcade vehicle controller with suspension and terrain slope alignment
+  * Full driving controls: W/S throttle & reverse, A/D steering, Space drift/handbrake, Shift Nitro Chrono-Boost
+  * Enter/Exit vehicle mechanics ([E] key) with seamless camera transfer
+  * Vehicle ramming physics dealing high-impact damage to hostile wasteland mobs
+  * Vehicle headlights for night driving and Nitro exhaust particle effects
+- Multi-Weapon Arsenal & Melee Combat (Completed)
+  * Slot 1: Energy Blaster (ranged projectile sidearm, consumes Energy Ammo)
+  * Slot 2: Wasteland Sword (fast steel slashing blade, stamina-based melee sweeps)
+  * Slot 3: Scrapper Battleaxe (heavy overhead cleave with massive knockback and damage)
+  * Hotkey weapon switching (1, 2, 3) and mouse wheel cycling
+  * Weapon HUD box displaying active weapon stats and damage
+- Chrono Dilation / Bullet Time (Completed)
+  * [Q] toggle slows world time down to 0.32x while maintaining player real-time agility
+  * Temporal screen border vignette pulse and slow-mo HUD indicator
+  * Stamina-drain balance mechanism
+- Wasteland Faction Landmarks & Discovery System (Completed)
+  * Scrapper Outpost & Garage (Scrappers Coalition)
+  * The Imperial Citadel (Ancient Dynasty)
+  * Sanctuary of the Church (The Faithful Order)
+  * Tank Graveyard & Siren Outpost (Iron Legion Remnants)
+  * Dynamic proximity discovery banner and faction territory announcements
+- Enemy Archetypes & 3D Visual Diversity (Completed)
+  * Wasteland Raiders (balanced humanoid threats)
+  * Bouncing Gremlins (high-speed leaping melee swarmers using custom 3D model)
+  * Floating Chrono Drones (aerial hover snipers using custom 3D model)
+  * Heavy Automatons (armored tanky minibosses guarding vaults)
+- UI Suite & Full In-Game HUD (Completed)
+  * Health bar, Stamina bar, Energy Ammo counter, Speed/Multiplier readouts
+  * Interactive Chest Storage transfer modal
+  * Save & Load game persistence (F5/F9)
+  * Full Settings (FOV, Sensitivity, VSync, Fullscreen, Volume)
+  * Debug Cheat Menu (F1) and flight mode (V)
+- Dynamic Rotating Day/Night Cycle (Completed)
 
-Possible Features:
-Interaction System(Not Happening)
-Basic Multiplayer(Might Not Happen)
+Roadmap / Future Ideas:
+- Faction questlines and dialogue trees
+- Vehicle weapon mounting (roof-mounted turrets)
+- Transition / Migration to Godot 4.x
 
-More To be Added Soon!
-
-Disclaimer: All Assets are made by Me no outsourceing was done in the making of this project.
+Disclaimer: All Assets are made by Me, no outsourcing was done in the making of this project.
