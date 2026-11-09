@@ -254,11 +254,24 @@ func use_item_at(index: int, player_node: Node = null) -> bool:
 					player_node.current_stamina = current_stamina
 			used = true
 			notify("Golden Pillow Relic used! Full HP & Stamina restored!")
+		"sword_weapon":
+			set_active_weapon(WEAPON_SWORD)
+			used = true
+			notify("Equipped Wasteland Sword!")
+		"axe_prototype":
+			set_active_weapon(WEAPON_AXE)
+			used = true
+			notify("Equipped Scrapper Battleaxe!")
 
 	if used:
 		var _removed := remove_item_at(index, 1)
 		emit_signal("stats_changed")
 	return used
+
+func reset_runtime_state() -> void:
+	set_chrono_dilation(false)
+	is_driving = false
+	current_vehicle = null
 
 # --- Avenue 4: Weapon & Combat Operations ---
 func set_active_weapon(weapon_id: String) -> void:
@@ -525,6 +538,7 @@ func load_game(_tree: Object = null) -> bool:
 	if target_scene.empty():
 		target_scene = "res://Scenes/Main Game.tscn"
 
+	reset_runtime_state()
 	get_tree().paused = false
 	var err := get_tree().change_scene(target_scene)
 	if err != OK:

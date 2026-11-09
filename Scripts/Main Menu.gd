@@ -1,6 +1,8 @@
 extends Control
 
 func _ready() -> void:
+	Global.reset_runtime_state()
+	Engine.time_scale = 1.0
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_setup_extra_buttons()
@@ -13,6 +15,7 @@ func _setup_extra_buttons() -> void:
 		var load_btn := Button.new()
 		load_btn.name = "Load_Save_Button"
 		load_btn.text = "Load Saved Game"
+		load_btn.disabled = not Global.has_save_game()
 		load_btn.margin_left = 100.0
 		load_btn.margin_top = 138.0
 		load_btn.margin_right = 383.0

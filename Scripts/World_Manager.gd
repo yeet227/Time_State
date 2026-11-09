@@ -189,7 +189,7 @@ func _spawn_landmark_trigger_areas() -> void:
 		var _err := area.connect("body_entered", self, "_on_landmark_body_entered", [lm])
 
 func _on_landmark_body_entered(body: Node, lm: Dictionary) -> void:
-	if body and (body.is_in_group("player") or body.name == "Player"):
+	if body and (body.is_in_group("player") or body.name == "Player" or (body.is_in_group("vehicle") and body.get("is_driven"))):
 		Global.discover_landmark(lm["id"], lm["name"], lm["faction"])
 
 func _spawn_world_pickups() -> void:
@@ -213,8 +213,8 @@ func _spawn_world_pickups() -> void:
 		p.pickup_id = cfg["id"]
 		p.item_id = cfg["item"]
 		p.count = cfg["count"]
+		p.translation = cfg["pos"]
 		add_child(p)
-		p.global_transform.origin = cfg["pos"]
 
 func _spawn_world_enemies() -> void:
 	var enemy_spawns := [
@@ -244,6 +244,6 @@ func _spawn_world_enemies() -> void:
 		var enemy := EnemyScene.instance()
 		enemy.enemy_id = esp["id"]
 		enemy.set("enemy_type", esp["type"])
+		enemy.translation = esp["pos"]
 		add_child(enemy)
-		enemy.global_transform.origin = esp["pos"]
 		enemy._home_position = esp["pos"]

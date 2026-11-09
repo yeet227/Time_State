@@ -56,15 +56,15 @@ func _on_body_entered(body: Node) -> void:
 		if body.has_method("take_damage"):
 			body.call("take_damage", damage, global_transform.origin)
 			queue_free()
-		elif body is StaticBody or body is GridMap:
+		elif body is PhysicsBody or body is GridMap:
 			queue_free()
 	else:
 		if body.is_in_group("player"):
 			return
 		if body.has_method("take_damage"):
-			body.call("take_damage", damage)
+			body.call("take_damage", damage, global_transform.origin)
 			queue_free()
-		elif body is StaticBody or body is RigidBody:
+		elif body is PhysicsBody or body is GridMap:
 			if body is RigidBody:
-				body.apply_central_impulse(direction * 12.0)
+				(body as RigidBody).apply_central_impulse(direction * 12.0)
 			queue_free()

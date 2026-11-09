@@ -143,6 +143,7 @@ func _build_health_bar() -> void:
 	bg_mesh.size = Vector3(1.24, 0.16, 0.04)
 	var bg_mat := SpatialMaterial.new()
 	bg_mat.flags_unshaded = true
+	bg_mat.params_billboard_mode = SpatialMaterial.BILLBOARD_FIXED_Y
 	bg_mat.albedo_color = Color(0.08, 0.08, 0.08, 1.0)
 	bg_mesh.material = bg_mat
 	bg_inst.mesh = bg_mesh
@@ -154,6 +155,7 @@ func _build_health_bar() -> void:
 	fill_mesh.size = Vector3(1.18, 0.11, 0.06)
 	_hp_bar_mat = SpatialMaterial.new()
 	_hp_bar_mat.flags_unshaded = true
+	_hp_bar_mat.params_billboard_mode = SpatialMaterial.BILLBOARD_FIXED_Y
 	_hp_bar_mat.albedo_color = Color(0.2, 0.9, 0.3, 1.0)
 	fill_mesh.material = _hp_bar_mat
 	_hp_bar_fill.mesh = fill_mesh
@@ -357,9 +359,9 @@ func _die() -> void:
 
 	drop.item_id = loot_table[_rng.randi() % loot_table.size()]
 	drop.count = 1
+	drop.translation = global_transform.origin + Vector3(0.0, 0.5, 0.0)
 	var parent_scene := get_tree().current_scene if get_tree().current_scene else get_parent()
 	parent_scene.add_child(drop)
-	drop.global_transform.origin = global_transform.origin + Vector3(0.0, 0.5, 0.0)
 
 	Global.notify("%s defeated! Dropped %s" % [enemy_type.capitalize(), Global.ITEM_DB[drop.item_id]["name"]])
 	queue_free()

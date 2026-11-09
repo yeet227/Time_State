@@ -790,7 +790,7 @@ func _unhandled_input(event: InputEvent) -> void:
 					open_cheat_menu()
 				get_tree().set_input_as_handled()
 			KEY_V:
-				if not is_any_modal_open():
+				if not is_any_modal_open() and not Global.is_driving:
 					Global.flight_enabled = not Global.flight_enabled
 					_sync_cheat_controls()
 					Global.notify("Flight Mode: %s" % ("ON" if Global.flight_enabled else "OFF"))
@@ -995,6 +995,8 @@ func _on_load_game_pressed() -> void:
 	var _ok := Global.load_game()
 
 func _on_main_menu_pressed() -> void:
+	Global.reset_runtime_state()
+	Engine.time_scale = 1.0
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	var _err := get_tree().change_scene("res://Scenes/Main Menu.tscn")

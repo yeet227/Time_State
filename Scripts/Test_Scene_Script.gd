@@ -20,12 +20,14 @@ func _ready() -> void:
 		for i in range(positions.size()):
 			var enemy := EnemyScene.instance()
 			enemy.enemy_id = "test_scene_enemy_%d" % i
+			enemy.translation = positions[i]
 			add_child(enemy)
-			enemy.global_transform.origin = positions[i]
 			if player and enemy.has_method("set_target"):
 				enemy.call("set_target", player)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.scancode == KEY_R:
+			Global.reset_runtime_state()
+			Engine.time_scale = 1.0
 			var _err = get_tree().reload_current_scene()

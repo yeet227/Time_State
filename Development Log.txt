@@ -39,6 +39,20 @@ Completed Features (Avenue 4: Dieselpunk Chrono-Wasteland RPG):
   * Full Settings (FOV, Sensitivity, VSync, Fullscreen, Volume)
   * Debug Cheat Menu (F1) and flight mode (V)
 - Dynamic Rotating Day/Night Cycle (Completed)
+- GDScript Code Flaws & Systems Bug Audit (Completed)
+  * Launch Pads & Jump Pads: Fixed upward velocity cancellation caused by ground snap logic in Player.gd; snap_vector is now cleared on upward impulse so players launch cleanly into the air.
+  * Pickups & Drops: Fixed dynamic item drops (from defeated enemies) snapping down to Y=0 due to early _base_y initialization before world translation was set.
+  * Enemy Spawner Logic: Set translation before add_child in World_Manager.gd and Test_Scene_Script.gd to prevent enemies from wandering back towards (0,0,0) instead of their outposts.
+  * Chrono Dilation / Bullet Time Lifecycle: Guaranteed Engine.time_scale and bullet time flags are cleanly reset on player death/respawn, scene load, and returning to the Main Menu.
+  * Vehicle Driver Decoupling: Prevented invisible driver player from continuing to process on-foot movement, gravity falling, stamina consumption, and shooting while inside the Wasteland Cruiser; driver coordinates now follow vehicle.
+  * Vehicle Wheel Animation: Eliminated Euler gimbal flip and pitch/yaw fighting by using continuous _wheel_spin tracking.
+  * Vehicle Terrain Traversal: Fixed uphill speed stalling by incorporating forward incline component into velocity on ground contact and switched to rotate_object_local for slope turning.
+  * 3rd Person Camera & Character Turning: Set SpringArm to top-level with independent orbit, and added smooth character body rotation to face movement and aim directions.
+  * Inventory Weapons: Added use_item_at handlers for sword_weapon and axe_prototype in Global.gd so weapons found in chests can be equipped directly from backpack.
+  * Projectile Collision & Knockback: Passed source position on player projectiles so enemies take directional knockback, and broadened collision checks to all PhysicsBody instances (preventing shots passing through vehicles).
+  * Billboard Health Bars: Set BILLBOARD_FIXED_Y on enemy floating health bars so they remain visible and legible from any camera angle.
+  * Landmark Vehicle Triggers: Allowed driven vehicles to trigger landmark discovery zones.
+  * Removed duplicate/malformed file "Scripts/Object_Rotate .gd" with trailing space.
 
 Roadmap / Future Ideas:
 - Faction questlines and dialogue trees

@@ -7,6 +7,8 @@ func _on_Area_body_entered(body: Node) -> void:
 		body.velocity.y = max(body.velocity.y, 0.0) + launch_force
 	elif "_velocity" in body:
 		body._velocity.y = max(body._velocity.y, 0.0) + launch_force
+	if "snap_vector" in body:
+		body.snap_vector = Vector3.ZERO
 
 func _on_Area_body_exited(_body: Node) -> void:
 	pass

@@ -40,6 +40,7 @@ var _wheel_fl: Spatial = null
 var _wheel_fr: Spatial = null
 var _wheel_rl: Spatial = null
 var _wheel_rr: Spatial = null
+var _wheel_spin: float = 0.0
 
 func _ready() -> void:
 	add_to_group("vehicle")
@@ -137,7 +138,7 @@ func _process_driving(delta: float) -> void:
 	if abs(current_speed) > 0.5:
 		var turn_direction := 1.0 if current_speed >= 0.0 else -1.0
 		var rot_amount := steer_input * steer_rate * delta * turn_direction * (0.4 + 0.6 * speed_ratio)
-		rotate_y(rot_amount)
+		rotate_object_local(Vector3.UP, rot_amount)
 
 	# 4. Movement vectors and terrain projection
 	var forward_dir := -transform.basis.z.normalized()
@@ -147,11 +148,15 @@ func _process_driving(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
-		velocity.y = -0.5
+		velocity.y = forward_dir.y * current_speed - 1.0
 		_align_with_terrain(delta)
 
 	var snap := -get_floor_normal() if is_on_floor() else Vector3.DOWN
 	velocity = move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(45.0))
+
+	# Keep driver player position synchronized with cruiser
+	if driver_player and is_instance_valid(driver_player):
+		driver_player.global_transform.origin = global_transform.origin
 
 	# 5. Check ramming impacts with enemies
 	_check_ram_collisions()
@@ -163,14 +168,16 @@ func _process_driving(delta: float) -> void:
 
 func _align_with_terrain(delta: float) -> void:
 	var floor_normal := get_floor_normal()
-	if floor_normal.length_squared() > 0.01 and floor_normal.dot(Vector3.UP) > 0.4:
+	if floor_normal.length_squared() > 0.01 and floor_normal.dot(Vector3.UP) > 0.35:
 		var target_up := floor_normal
 		var cur_up := transform.basis.y
 		var new_up := cur_up.linear_interpolate(target_up, min(1.0, 8.0 * delta)).normalized()
 		var forward := -transform.basis.z
-		var right := forward.cross(new_up).normalized()
-		forward = new_up.cross(right).normalized()
-		transform.basis = Basis(right, new_up, -forward)
+		var right := forward.cross(new_up)
+		if right.length_squared() > 0.001:
+			right = right.normalized()
+			forward = new_up.cross(right).normalized()
+			transform.basis = Basis(right, new_up, -forward)
 
 func _check_ram_collisions() -> void:
 	var abs_spd := abs(current_speed)
@@ -198,17 +205,15 @@ func _process_parked(delta: float) -> void:
 	velocity = move_and_slide_with_snap(velocity, Vector3.DOWN, Vector3.UP, true)
 
 func _update_wheel_animations(delta: float) -> void:
-	var spin_rot := (current_speed / 0.4) * delta
+	_wheel_spin += (current_speed / 0.4) * delta
 	if _wheel_fl and is_instance_valid(_wheel_fl):
-		_wheel_fl.rotate_x(spin_rot)
-		_wheel_fl.rotation.y = current_steer
+		_wheel_fl.rotation = Vector3(_wheel_spin, current_steer, 0.0)
 	if _wheel_fr and is_instance_valid(_wheel_fr):
-		_wheel_fr.rotate_x(spin_rot)
-		_wheel_fr.rotation.y = current_steer
+		_wheel_fr.rotation = Vector3(_wheel_spin, current_steer, 0.0)
 	if _wheel_rl and is_instance_valid(_wheel_rl):
-		_wheel_rl.rotate_x(spin_rot)
+		_wheel_rl.rotation = Vector3(_wheel_spin, 0.0, 0.0)
 	if _wheel_rr and is_instance_valid(_wheel_rr):
-		_wheel_rr.rotate_x(spin_rot)
+		_wheel_rr.rotation = Vector3(_wheel_spin, 0.0, 0.0)
 
 func enter_vehicle(player: Spatial) -> void:
 	if is_driven or player == null or not is_instance_valid(player):

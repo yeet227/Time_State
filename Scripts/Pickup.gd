@@ -6,6 +6,7 @@ export var count: int = 1
 export var build_visual_if_empty: bool = true
 
 var _base_y: float = 0.0
+var _base_y_initialized: bool = false
 var _time: float = 0.0
 
 func _ready() -> void:
@@ -15,6 +16,8 @@ func _ready() -> void:
 
 	add_to_group("pickup")
 	_base_y = translation.y
+	if abs(_base_y) > 0.001:
+		_base_y_initialized = true
 
 	var has_col := false
 	var has_mesh := false
@@ -63,7 +66,15 @@ func _get_item_color(id: String) -> Color:
 		_:
 			return Color(0.9, 0.9, 0.9)
 
+func set_base_y(y: float) -> void:
+	_base_y = y
+	_base_y_initialized = true
+	translation.y = y
+
 func _physics_process(delta: float) -> void:
+	if not _base_y_initialized:
+		_base_y = translation.y
+		_base_y_initialized = true
 	_time += delta * 2.5
 	translation.y = _base_y + sin(_time) * 0.18
 	rotate_y(1.6 * delta)

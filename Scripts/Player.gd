@@ -121,10 +121,11 @@ func _setup_weapon_mounts() -> void:
 	# 1. Energy Blaster (reparent or create from Movable_object_Anim)
 	if has_node("Movable_object_Anim"):
 		var orig_gun = get_node("Movable_object_Anim")
+		var orig_tf: Transform = orig_gun.transform
 		remove_child(orig_gun)
 		_weapon_pivot.add_child(orig_gun)
+		orig_gun.transform = orig_tf
 		orig_gun.translation = Vector3.ZERO
-		orig_gun.rotation_degrees = Vector3.ZERO
 		_blaster_node = orig_gun
 	else:
 		_blaster_node = Spatial.new()
@@ -204,6 +205,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_tree().set_input_as_handled()
 
 func _physics_process(delta: float) -> void:
+	if Global.is_driving:
+		if Global.current_vehicle and is_instance_valid(Global.current_vehicle):
+			global_transform.origin = Global.current_vehicle.global_transform.origin
+		velocity = Vector3.ZERO
+		return
+
 	# Chrono-dilation delta compensation for player actions
 	var real_delta := delta / Engine.time_scale if Engine.time_scale > 0.0 else delta
 
@@ -257,6 +264,13 @@ func _physics_process(delta: float) -> void:
 	_update_nearby_interactables()
 
 func _execute_attack() -> void:
+	if camera_pivot:
+		var cam_fwd := -camera_pivot.global_transform.basis.z
+		cam_fwd.y = 0.0
+		if cam_fwd.length_squared() > 0.001:
+			cam_fwd = cam_fwd.normalized()
+			rotation.y = atan2(-cam_fwd.x, -cam_fwd.z)
+
 	match Global.active_weapon:
 		Global.WEAPON_BLASTER:
 			_shoot_projectile()
@@ -370,6 +384,10 @@ func _process_flight_movement(input_dir: Vector3, is_boosting: bool, delta: floa
 
 	if fly_dir.length_squared() > 0.01:
 		fly_dir = fly_dir.normalized()
+		var fly_flat := Vector3(fly_dir.x, 0.0, fly_dir.z)
+		if fly_flat.length_squared() > 0.01:
+			var target_rot_y := atan2(-fly_flat.x, -fly_flat.z)
+			rotation.y = lerp_angle(rotation.y, target_rot_y, min(1.0, 12.0 * delta))
 
 	var fly_speed := flight_base_speed * Global.flight_multiplier * Global.speed_multiplier
 	if is_boosting:
@@ -386,6 +404,10 @@ func _process_ground_movement(input_dir: Vector3, is_moving: bool, is_trying_spr
 		move_dir.y = 0.0
 		if move_dir.length_squared() > 0.001:
 			move_dir = move_dir.normalized()
+
+	if is_moving and move_dir.length_squared() > 0.001 and not _is_melee_swinging:
+		var target_rot_y := atan2(-move_dir.x, -move_dir.z)
+		rotation.y = lerp_angle(rotation.y, target_rot_y, min(1.0, 14.0 * delta))
 
 	var is_sprinting := false
 	if is_trying_sprint and is_moving and (current_stamina > 0.0 or Global.god_mode or Global.infinite_speed):
@@ -407,12 +429,15 @@ func _process_ground_movement(input_dir: Vector3, is_moving: bool, is_trying_spr
 	velocity.z = lerp(velocity.z, target_velocity.z, min(1.0, accel * delta))
 
 	if is_on_floor():
-		snap_vector = -get_floor_normal()
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = jump_impulse * Global.jump_multiplier
 			snap_vector = Vector3.ZERO
+		elif velocity.y > 0.1:
+			# External vertical impulse (launch pad, knockback, explosion)
+			snap_vector = Vector3.ZERO
 		else:
 			velocity.y = -0.1
+			snap_vector = -get_floor_normal()
 	else:
 		velocity.y -= gravity * delta
 		snap_vector = Vector3.ZERO
@@ -509,6 +534,7 @@ func _respawn() -> void:
 	current_stamina = max_stamina
 	Global.health = health
 	Global.current_stamina = current_stamina
+	Global.set_chrono_dilation(false)
 	velocity = Vector3.ZERO
 	global_transform = _spawn_transform
 	Global.notify("You were defeated! Respawned at checkpoint.")
